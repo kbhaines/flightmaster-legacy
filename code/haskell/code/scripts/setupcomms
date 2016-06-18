@@ -1,0 +1,20 @@
+#!/bin/sh
+
+case $1 in
+    pumba) addr=00:0A:3A:54:9E:C2;;
+    holux) addr=00:1B:C1:00:49:BA;;
+    emtac) addr=00:02:C7:15:A2:66;;
+    *) echo "Specify target";exit 1;;
+esac
+
+rfcomm bind rfcomm0 $addr
+chmod a+rw /dev/rfcomm0
+
+if [ "$2" = "pass" ];then
+
+    sdptool add --channel=2 SP
+    rfcomm watch rfcomm1 2 &
+    echo "Listen port enabled"
+
+fi
+

@@ -1,0 +1,36 @@
+Temporary Waypoint Management
+=============================
+
+The tempWaypoints array holds a maximum number of waypoints (MAX_TEMP). The
+idea is that when the array is full that the oldest waypoint is removed to be
+replaced by the newly added waypoint, i.e. a circular buffer style of operation.
+
+nextFreeTemp points to the next entry that will be *used*.  When nextFreeTemp <
+MAX_TEMP then this entry is NULL, otherwise it is the existing entry which will
+be freed and then overwritten.
+
+In order to delete from the middle of the array, the following algorithm is
+used to ensure that the oldest waypoint is still removed first when the array
+subsequently fills up. For example (using MAX_TEMP=5), ^ = nextFreeTemp:
+
+	1	2	3	4	5
+			^
+
+To delete entry #2, copy from ^ (nextFreeTemp) to end of array (see A) and from the
+beginning of array to nextFreeTemp-1 (see B), but omit the deleted waypoint:
+
+(A)	3	4	5
+(B)	3	4	5	1	()
+					^
+As shown, we leave nextFreeTemp pointing to the first blank entry.
+
+From this point, deleting another entry is a simple case of removing it from
+the array. E.g. Delete #4:
+
+	3	5	1	()	()
+				^
+
+Essentially the same operation as above: copy all, but omit the deleted
+waypoint. This is equivalent to (A) & (B) using element 1 as the starting point
+rather than nextFreeTemp, and this is what the code does (see REF1 in src/WDManager.c).
+

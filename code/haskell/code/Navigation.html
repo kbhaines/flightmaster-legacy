@@ -1,0 +1,1517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Navigation</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Navigation</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Navigation module
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3APlan"
+>Plan</A
+>  = <A HREF="#v%3APlan"
+>Plan</A
+> (Maybe (<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>, [<A HREF="Navigation.html#t%3ALegCheckpoint"
+>LegCheckpoint</A
+>]))</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ANavigation"
+>Navigation</A
+>  = <A HREF="#v%3ANavigation"
+>Navigation</A
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> (Maybe <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ACheckpoint"
+>Checkpoint</A
+>  = <A HREF="#v%3ACheckpoint"
+>Checkpoint</A
+> Int</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ALegCheckpoint"
+>LegCheckpoint</A
+>  = <A HREF="#v%3ALegCheckpoint"
+>LegCheckpoint</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AlegAltitude"
+>legAltitude</A
+> :: <A HREF="Coord.html#t%3AAltitude"
+>Altitude</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AlegCheckpoint"
+>legCheckpoint</A
+> :: <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> = Int</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AOperation"
+>Operation</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AQueryGetCheckpoint"
+>QueryGetCheckpoint</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AQueryFindOccurences"
+>QueryFindOccurences</A
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AQueryBestFitInsert"
+>QueryBestFitInsert</A
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AReportCheckpoints"
+>ReportCheckpoints</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AReportIdents"
+>ReportIdents</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AReportPlan"
+>ReportPlan</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AReportLength"
+>ReportLength</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AInsertCheckpoint"
+>InsertCheckpoint</A
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADeleteCheckpoint"
+>DeleteCheckpoint</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASetPlan"
+>SetPlan</A
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASetPlanCheckpoints"
+>SetPlanCheckpoints</A
+> [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASetPlanIdents"
+>SetPlanIdents</A
+> [<A HREF="Coord.html#t%3AIdent"
+>Ident</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AClear"
+>Clear</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AUndo"
+>Undo</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASetActiveCheckpoint"
+>SetActiveCheckpoint</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AGetActiveCheckpoint"
+>GetActiveCheckpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADeactivateCheckpoint"
+>DeactivateCheckpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIsActive"
+>IsActive</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AOperationResponse"
+>OperationResponse</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ACheckpointResponse"
+>CheckpointResponse</A
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACheckpointListResponse"
+>CheckpointListResponse</A
+> [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACheckpointNumberResponse"
+>CheckpointNumberResponse</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ACheckpointNumberListResponse"
+>CheckpointNumberListResponse</A
+> [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AIdentListResponse"
+>IdentListResponse</A
+> [<A HREF="Coord.html#t%3AIdent"
+>Ident</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3APlanResponse"
+>PlanResponse</A
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ABooleanResponse"
+>BooleanResponse</A
+> Bool</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetCheckpoint"
+>getCheckpoint</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlistCheckpoints"
+>listCheckpoints</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfindOccurences"
+>findOccurences</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AbestFitInsert"
+>bestFitInsert</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertCheckpoint"
+>insertCheckpoint</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; (<A HREF="Navigation.html#t%3APlan"
+>Plan</A
+>, Bool)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteCheckpoint"
+>deleteCheckpoint</A
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; (<A HREF="Navigation.html#t%3APlan"
+>Plan</A
+>, Bool)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnavInterface"
+>navInterface</A
+> :: <A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+> -&gt; <A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+> -&gt; (<A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+>, <A HREF="Navigation.html#t%3AOperationResponse"
+>OperationResponse</A
+>)</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3APlan"
+></A
+><B
+>Plan</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Plan represents a flight plan
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APlan"
+></A
+><B
+>Plan</B
+> (Maybe (<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>, [<A HREF="Navigation.html#t%3ALegCheckpoint"
+>LegCheckpoint</A
+>]))</TD
+><TD CLASS="rdoc"
+>Starting point and subsequent legs of the plan
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Plan')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Plan" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3ANavigation"
+></A
+><B
+>Navigation</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Navigation is a flight <TT
+><A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TT
+> combined with an active checkpoint number
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANavigation"
+></A
+><B
+>Navigation</B
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> (Maybe <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Navigation')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Navigation" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3ACheckpoint"
+></A
+><B
+>Checkpoint</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A checkpoint is the fundamental component of a <TT
+><A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TT
+>. Checkpoints contain
+ enough  basic information so that a complete plan can be created and
+ navigated without using actual waypoints from a database.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACheckpoint"
+></A
+><B
+>Checkpoint</B
+> Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Checkpoint')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Checkpoint" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3ALegCheckpoint"
+></A
+><B
+>LegCheckpoint</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A LegCheckpoint merges a <TT
+><A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TT
+> with some altitude information, the
+ minimum data needed to use a <TT
+><A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TT
+> as the end point of a leg.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALegCheckpoint"
+></A
+><B
+>LegCheckpoint</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AlegAltitude"
+></A
+><B
+>legAltitude</B
+> :: <A HREF="Coord.html#t%3AAltitude"
+>Altitude</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AlegCheckpoint"
+></A
+><B
+>legCheckpoint</B
+> :: <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:LegCheckpoint')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:LegCheckpoint" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3ALegCheckpoint"
+>LegCheckpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3ALegCheckpoint"
+>LegCheckpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3ALegCheckpoint"
+>LegCheckpoint</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3ACheckpointNumber"
+></A
+><B
+>CheckpointNumber</B
+> = Int</TD
+></TR
+><TR
+><TD CLASS="doc"
+>CheckpointNumber is indexed from 0 (0=starting checkpoint). 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AOperation"
+></A
+><B
+>Operation</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>An Operation represents all the operations or commands that the planning
+ manager will support.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AQueryGetCheckpoint"
+></A
+><B
+>QueryGetCheckpoint</B
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+><TD CLASS="rdoc"
+>Return the specified checkpoint
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AQueryFindOccurences"
+></A
+><B
+>QueryFindOccurences</B
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+><TD CLASS="rdoc"
+>Return a list of all occurences of the checkpoint from the plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AQueryBestFitInsert"
+></A
+><B
+>QueryBestFitInsert</B
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+><TD CLASS="rdoc"
+>Return a list of places in the plan that the checkpoint could be
+ sensibly inserted into, ordering to system planning criteria,
+ ordered according to best fit.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AReportCheckpoints"
+></A
+><B
+>ReportCheckpoints</B
+></TD
+><TD CLASS="rdoc"
+>Return list of checkpoints currently in plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AReportIdents"
+></A
+><B
+>ReportIdents</B
+></TD
+><TD CLASS="rdoc"
+>Return list of idents of checkpoints currently in plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AReportPlan"
+></A
+><B
+>ReportPlan</B
+></TD
+><TD CLASS="rdoc"
+>Return the current plan itself
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AReportLength"
+></A
+><B
+>ReportLength</B
+></TD
+><TD CLASS="rdoc"
+>Return number of checkpoints in the plan (as CheckpointNumberResponse)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AInsertCheckpoint"
+></A
+><B
+>InsertCheckpoint</B
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+><TD CLASS="rdoc"
+>Insert the specified checkpoint at the position indicated. Will not 
+ insert anything if the checkpoint either side of CheckpointNumber is
+ the same checkpoint
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADeleteCheckpoint"
+></A
+><B
+>DeleteCheckpoint</B
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+><TD CLASS="rdoc"
+>Delete the specified checkpoint from the plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASetPlan"
+></A
+><B
+>SetPlan</B
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+><TD CLASS="rdoc"
+>Set the current  plan to the specified plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASetPlanCheckpoints"
+></A
+><B
+>SetPlanCheckpoints</B
+> [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+><TD CLASS="rdoc"
+>Set the current plan according to the list of supplied checkpoints
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASetPlanIdents"
+></A
+><B
+>SetPlanIdents</B
+> [<A HREF="Coord.html#t%3AIdent"
+>Ident</A
+>]</TD
+><TD CLASS="rdoc"
+>Set the current plan according to the list of supplied identifiers. The
+ system must be able to un-ambiguously resolve the first identifier from
+ the list otherwise the operation fails. Subsequent ambiguities in the
+ identifiers list are resolved by choosing the object closet to the
+ preceding identifier.
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AClear"
+></A
+><B
+>Clear</B
+></TD
+><TD CLASS="rdoc"
+>Erase all checkpoints from the plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AUndo"
+></A
+><B
+>Undo</B
+></TD
+><TD CLASS="rdoc"
+>Undo the last change to the plan
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASetActiveCheckpoint"
+></A
+><B
+>SetActiveCheckpoint</B
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+><TD CLASS="rdoc"
+>Modify the active checkpoint. Returns BooleanResponse
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGetActiveCheckpoint"
+></A
+><B
+>GetActiveCheckpoint</B
+></TD
+><TD CLASS="rdoc"
+>Query the active checkpoint. Returns CheckpointNumberResponse
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADeactivateCheckpoint"
+></A
+><B
+>DeactivateCheckpoint</B
+></TD
+><TD CLASS="rdoc"
+>De-activate the active checkpoint. Returns BooleanResponse (always true)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIsActive"
+></A
+><B
+>IsActive</B
+></TD
+><TD CLASS="rdoc"
+>Return True if a checkpoint is active
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Operation')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Operation" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AOperationResponse"
+></A
+><B
+>OperationResponse</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>An OperationResponse is returned from the handling function to indicate the
+ results of the operation. The return values correspond to their counterparts
+ in the <TT
+><A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+></TT
+> type
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACheckpointResponse"
+></A
+><B
+>CheckpointResponse</B
+> <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACheckpointListResponse"
+></A
+><B
+>CheckpointListResponse</B
+> [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACheckpointNumberResponse"
+></A
+><B
+>CheckpointNumberResponse</B
+> <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACheckpointNumberListResponse"
+></A
+><B
+>CheckpointNumberListResponse</B
+> [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AIdentListResponse"
+></A
+><B
+>IdentListResponse</B
+> [<A HREF="Coord.html#t%3AIdent"
+>Ident</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APlanResponse"
+></A
+><B
+>PlanResponse</B
+> <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ABooleanResponse"
+></A
+><B
+>BooleanResponse</B
+> Bool</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:OperationResponse')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:OperationResponse" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Navigation.html#t%3AOperationResponse"
+>OperationResponse</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Navigation.html#t%3AOperationResponse"
+>OperationResponse</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Navigation.html#t%3AOperationResponse"
+>OperationResponse</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgetCheckpoint"
+></A
+><B
+>getCheckpoint</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Return the checkpoint at the specified position in the plan. Checkpoint
+ 0 is the first checkpoint.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlistCheckpoints"
+></A
+><B
+>listCheckpoints</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AfindOccurences"
+></A
+><B
+>findOccurences</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Return list of checkpoint numbers where the specified checkpoint
+ is found
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AbestFitInsert"
+></A
+><B
+>bestFitInsert</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; [<A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AinsertCheckpoint"
+></A
+><B
+>insertCheckpoint</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpoint"
+>Checkpoint</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; (<A HREF="Navigation.html#t%3APlan"
+>Plan</A
+>, Bool)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Return plan after attempting insert operation. Returns true if the
+ operation succeeds and the plan is modified
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdeleteCheckpoint"
+></A
+><B
+>deleteCheckpoint</B
+> :: <A HREF="Navigation.html#t%3APlan"
+>Plan</A
+> -&gt; <A HREF="Navigation.html#t%3ACheckpointNumber"
+>CheckpointNumber</A
+> -&gt; (<A HREF="Navigation.html#t%3APlan"
+>Plan</A
+>, Bool)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Delete the specified checkpoint from the plan
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnavInterface"
+></A
+><B
+>navInterface</B
+> :: <A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+> -&gt; <A HREF="Navigation.html#t%3AOperation"
+>Operation</A
+> -&gt; (<A HREF="Navigation.html#t%3ANavigation"
+>Navigation</A
+>, <A HREF="Navigation.html#t%3AOperationResponse"
+>OperationResponse</A
+>)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Message-based interface for managing navigation functions
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.3.0</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,64 @@
+Obtaining Data
+==============
+
+Raw data comes from here:
+
+http://www.ngdc.noaa.gov/ngdcinfo/onlineaccess.html
+
+World data is broken into 16 cells of differing sizes:
+
+		 0W
++----+----+----+----+
+| A  | B  | C  | D  |
++----+----+----+----+
+| E  | F  | G  | H  |
++----+----+----+----+--0N
+| I  | J  | K  | L  |
++----+----+----+----+
+| M  | N  | O  | P  |
++----+----+----+----+
+
+(files A-D and M-P are 4800 rows tall, the others are 6000 rows tall. All files
+are 10800 rows wide)
+
+The data format is available in 16 bit signed integer, small endian (i.e.
+Intel), units = metres. Range is from -407 to 8752 metres
+
+	-500 represents sea level
+
+Process
+=======
+
+See convert_world.sh. It takes the data from NGDC files and processes it
+to a complete single global terrain file.
+
+This script depends upon convert_globe, stitch and resample_globe to do the
+meaty bits of the binary conversion processes. 
+
+After that, the utility make-fm-terrain can be used to extract portions
+of the globe file for use in FlightMaster
+
+
+
+Old Process
+===========
+
+(deprecated, for historical interest only)
+
+- convert_globe.c converts input files from 16 bit data into 8 bits. The
+  algorithm encodes one byte per sample at 125 feet resolution, bias = -1500ft.
+
+- 0 = -1500 feet, 12 = OCEAN and no land sample should have this value.
+
+- Make sure that the target file is eventually 90 degrees tall - otherwise
+  the resampling stage won't work correctly and the data will have errors. The
+  source files are all 90 degrees wide so width shouldn't be an issue.
+
+- To combine two tiles, one above the other, simply cat the two together.
+
+- Use 'resample_globe' to resize & resample from 10800 to 8192/4096/2048 wide
+
+- stitch.c can be used to combine files which are 8192 cells wide together into
+  one wider file. Stitch.sh recompiles stitch.c to combine files with different
+  left & right widths.
+

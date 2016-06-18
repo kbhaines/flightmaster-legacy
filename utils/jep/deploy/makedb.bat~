@@ -1,0 +1,9 @@
+<<<<<<< .working
+perl -w arinc-fm.pl fmaster.pc EU metres "Europe/Africa" EUR.. AFR.. EEUE. EEUU[KM] EEUL.
+perl -w arinc-fm.pl fmaster.pc NA feet "USA/Canada" USA.. CAN..
+perl -w arinc-fm.pl fmaster.pc AUSNZ feet "Australia/NZ" PAC.. SPA..
+=======
+perl -w arinc-fm.pl fmasterw.pc EU metres "Europe/Africa" EUR.. AFR.. EEUE. EEUL.
+perl -w arinc-fm.pl fmasterw.pc NA feet "USA/Canada" USA.. CAN..
+perl -w arinc-fm.pl fmasterw.pc AUSNZ feet "Australia/NZ" PAC.. SPA..
+>>>>>>> .merge-right.r422

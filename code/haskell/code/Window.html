@@ -1,0 +1,2774 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Window</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Window</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Functions
+</A
+></DT
+><DD
+><DL
+><DT
+><A HREF="#2"
+>Window creation
+</A
+></DT
+><DT
+><A HREF="#3"
+>Message functions
+</A
+></DT
+><DT
+><A HREF="#4"
+>Functions for drawing and selecting
+</A
+></DT
+><DT
+><A HREF="#5"
+>Functions for querying and updating window states
+</A
+></DT
+></DL
+></DD
+><DT
+><A HREF="#6"
+>Types
+</A
+></DT
+><DD
+><DL
+><DT
+><A HREF="#7"
+>Windows and their attributes
+</A
+></DT
+><DT
+><A HREF="#8"
+>Messaging types
+</A
+></DT
+></DL
+></DD
+><DT
+><A HREF="#9"
+>Miscellaneous types/functions
+</A
+></DT
+><DT
+><A HREF="#10"
+>User Guide
+</A
+></DT
+><DD
+><DL
+><DT
+><A HREF="#11"
+>Overview
+</A
+></DT
+><DT
+><A HREF="#12"
+>Creating a window heirarchy
+</A
+></DT
+><DT
+><A HREF="#13"
+>Message Handling
+</A
+></DT
+><DT
+><A HREF="#14"
+>Global/shared variables
+</A
+></DT
+></DL
+></DD
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A bare-metal window manager, part of OpenGLINT. The manager draws windows
+ into GraphicsCmd's as implemented in the OpenGLINT graphics-interface layer:
+ at the moment that layer only translates to OpenGL commands. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnewWindow"
+>newWindow</A
+> :: <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>] -&gt; <A HREF="Window.html#t%3ATitle"
+>Title</A
+> -&gt; [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>] -&gt; <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+> -&gt; Maybe <A HREF="Window.html#t%3AMessageHandler"
+>MessageHandler</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsendMessage"
+>sendMessage</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AMessage"
+>Message</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsendMessageTo"
+>sendMessageTo</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+> -&gt; <A HREF="Window.html#t%3AResponse"
+>Response</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adraw"
+>draw</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApickWindows"
+>pickWindows</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> -&gt; [(<A HREF="Window.html#t%3AID"
+>ID</A
+>, <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AreadPublicVariable"
+>readPublicVariable</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+> -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AupdatePublicVariable"
+>updatePublicVariable</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; Int -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdisplayToggleHidden"
+>displayToggleHidden</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdisplayToggleDisabled"
+>displayToggleDisabled</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aposition"
+>position</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Adimensions"
+>dimensions</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aresize"
+>resize</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AWindow"
+>Window</A
+>  = <A HREF="#v%3AWindow"
+>Window</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aident"
+>ident</A
+> :: <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Atitle"
+>title</A
+> :: <A HREF="Window.html#t%3ATitle"
+>Title</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Astyle"
+>style</A
+> :: [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Abounds"
+>bounds</A
+> :: <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Achildren"
+>children</A
+> :: [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AdisplayState"
+>displayState</A
+> :: <A HREF="Window.html#t%3AWindowState"
+>WindowState</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AhandleMessage"
+>handleMessage</A
+> :: <A HREF="Window.html#t%3AMessageHandler"
+>MessageHandler</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A HREF="#t%3AID"
+>ID</A
+>  = <A HREF="#v%3AID"
+>ID</A
+> Int</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ATitle"
+>Title</A
+> = String</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A HREF="#t%3ABounds"
+>Bounds</A
+>  = <A HREF="#v%3ABounds"
+>Bounds</A
+> (<A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>, <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ACoordinate"
+>Coordinate</A
+> = <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AWindowState"
+>WindowState</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AEnabled"
+>Enabled</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADisabled"
+>Disabled</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AHidden"
+>Hidden</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AStyle"
+>Style</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ACustomStyle"
+>CustomStyle</A
+> (<A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>])</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ABackground"
+>Background</A
+> <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AFrame"
+>Frame</A
+> <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ALockTop"
+>LockTop</A
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ALockBottom"
+>LockBottom</A
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ALockLeft"
+>LockLeft</A
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ALockRight"
+>LockRight</A
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AFillParent"
+>FillParent</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AMessageHandler"
+>MessageHandler</A
+> = <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+> -&gt; <A HREF="Window.html#t%3AQueryFunction"
+>QueryFunction</A
+> -&gt; <A HREF="Window.html#t%3AResponse"
+>Response</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AQueryFunction"
+>QueryFunction</A
+> = <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+> -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AStateHandle"
+>StateHandle</A
+> = Int</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AMessage"
+>Message</A
+>  = <A HREF="#v%3AMessage"
+>Message</A
+> <A HREF="Window.html#t%3AMessageAddress"
+>MessageAddress</A
+> <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AMessageAddress"
+>MessageAddress</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AAll"
+>All</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AFirst"
+>First</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AOne"
+>One</A
+> <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AMessageBody"
+>MessageBody</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3ALeftButtonDown"
+>LeftButtonDown</A
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> [<A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ALeftDrag"
+>LeftDrag</A
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADraw"
+>Draw</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AStateQuery"
+>StateQuery</A
+> <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AStateUpdateNotify"
+>StateUpdateNotify</A
+> <A HREF="Window.html#t%3AID"
+>ID</A
+> (Maybe <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+>)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AKey"
+>Key</A
+> Char</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AAppWindowResize"
+>AppWindowResize</A
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AParentResize"
+>ParentResize</A
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AMoveWindow"
+>MoveWindow</A
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AResponse"
+>Response</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AUpdate"
+>Update</A
+> <A HREF="Window.html#t%3AWindow"
+>Window</A
+> (Maybe <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+>)</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AUpdatePrivate"
+>UpdatePrivate</A
+> <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ADrawCmds"
+>DrawCmds</A
+> [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3AResponse"
+>Response</A
+> <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ANoResponse"
+>NoResponse</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ASyncMessage"
+>SyncMessage</A
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>= <A HREF="#v%3AClicked"
+>Clicked</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>| <A HREF="#v%3ASyncVar"
+>SyncVar</A
+> (Int, <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+>)</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AframedStyle"
+>framedStyle</A
+> :: [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AexpandWithChildren"
+>expandWithChildren</A
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>]</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Functions
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="2"
+>Window creation
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnewWindow"
+></A
+><B
+>newWindow</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+><TD CLASS="rdoc"
+>Unique ID of the window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>]</TD
+><TD CLASS="rdoc"
+>List of child windows
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Window.html#t%3ATitle"
+>Title</A
+></TD
+><TD CLASS="rdoc"
+>Title of window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>]</TD
+><TD CLASS="rdoc"
+>Display attributes of window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+></TD
+><TD CLASS="rdoc"
+>Window position and dimensions
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Maybe <A HREF="Window.html#t%3AMessageHandler"
+>MessageHandler</A
+></TD
+><TD CLASS="rdoc"
+>Message handling function
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a new window. 
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="3"
+>Message functions
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsendMessage"
+></A
+><B
+>sendMessage</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AMessage"
+>Message</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Send the message to the window and its children, in effect invoking
+ the messageHandler function of each window with the body of the message
+ supplied in the parameter.
+</P
+><P
+>This function is the main entry point into the window system. Messages should
+ be created by external processes (such as a GLUT-driven program) and sent
+ to the top-level window. The messages will be forwarded to child windows
+ as appropriate, and any child-responses that need attention will be further
+ processed, before finally returning a new top-level window
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AsendMessageTo"
+></A
+><B
+>sendMessageTo</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+> -&gt; <A HREF="Window.html#t%3AResponse"
+>Response</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Send the message to the specified window. Not really recommended, you should
+ use <TT
+><A HREF="Window.html#v%3AsendMessage"
+>sendMessage</A
+></TT
+> with a correctly addressed message instead, but it's useful
+ if you need a <TT
+><A HREF="Window.html#v%3AResponse"
+>Response</A
+></TT
+> instead of an updated <TT
+><A HREF="Window.html#v%3AWindow"
+>Window</A
+></TT
+>.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="4"
+>Functions for drawing and selecting
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adraw"
+></A
+><B
+>draw</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Compute GraphicsCmds for the window, and all of its children
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApickWindows"
+></A
+><B
+>pickWindows</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> -&gt; [(<A HREF="Window.html#t%3AID"
+>ID</A
+>, <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Given a window and a point, calculates ID of windows containing
+ the point, and the relative position within each window of the point. Returns
+ the results in reverse order, i.e. the deepest-level window is at the front
+ of the list.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="5"
+>Functions for querying and updating window states
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AreadPublicVariable"
+></A
+><B
+>readPublicVariable</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+> -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Returns the value of the specified public variable from the window (or
+ child of the window). It's up to the message handler of the target window
+ to interpret the <TT
+><A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+></TT
+> value and return the correct value.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AupdatePublicVariable"
+></A
+><B
+>updatePublicVariable</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; Int -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Update the specified global variable in the specified window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdisplayToggleHidden"
+></A
+><B
+>displayToggleHidden</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Toggle the display state of the window between Hidden and Enabled
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdisplayToggleDisabled"
+></A
+><B
+>displayToggleDisabled</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Toggle the display state of the window between Disabled and Enabled
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aposition"
+></A
+><B
+>position</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the position (x,y) of the window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adimensions"
+></A
+><B
+>dimensions</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the dimensions (w,h) of the window
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Aresize"
+></A
+><B
+>resize</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+> -&gt; <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Resize the window to the new dimensions
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="6"
+>Types
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="7"
+>Windows and their attributes
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AWindow"
+></A
+><B
+>Window</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A Window represents a rectangular region of the screen
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AWindow"
+></A
+><B
+>Window</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Aident"
+></A
+><B
+>ident</B
+> :: <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+><TD CLASS="rdoc"
+>Window's unique id
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Atitle"
+></A
+><B
+>title</B
+> :: <A HREF="Window.html#t%3ATitle"
+>Title</A
+></TD
+><TD CLASS="rdoc"
+>Title of the window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Astyle"
+></A
+><B
+>style</B
+> :: [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>]</TD
+><TD CLASS="rdoc"
+>List of style attributes controlling the base appearance of the window 
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Abounds"
+></A
+><B
+>bounds</B
+> :: <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+></TD
+><TD CLASS="rdoc"
+>Window position and dimensions
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3Achildren"
+></A
+><B
+>children</B
+> :: [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>]</TD
+><TD CLASS="rdoc"
+>List of child windows 
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AdisplayState"
+></A
+><B
+>displayState</B
+> :: <A HREF="Window.html#t%3AWindowState"
+>WindowState</A
+></TD
+><TD CLASS="rdoc"
+>Current draw/enable status of the window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AhandleMessage"
+></A
+><B
+>handleMessage</B
+> :: <A HREF="Window.html#t%3AMessageHandler"
+>MessageHandler</A
+></TD
+><TD CLASS="rdoc"
+>The message handling function for the window. By using a partially-applied
+ function you can make your window have locally-available configuration 
+ information
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Window')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Window" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AID"
+></A
+><B
+>ID</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>ID is used to identify each window
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AID"
+></A
+><B
+>ID</B
+> Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ID')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ID" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3ATitle"
+></A
+><B
+>Title</B
+> = String</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Title for windows
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3ABounds"
+></A
+><B
+>Bounds</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Bounding box of window: (x,y) and (w,h)
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ABounds"
+></A
+><B
+>Bounds</B
+> (<A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>, <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Bounds')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Bounds" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3ABounds"
+>Bounds</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3ACoordinate"
+></A
+><B
+>Coordinate</B
+> = <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Coordindates for positioning and dimensioning windows
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AWindowState"
+></A
+><B
+>WindowState</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Windows can be in one of these states. <TT
+><A HREF="Window.html#v%3AEnabled"
+>Enabled</A
+></TT
+> will draw the window, <TT
+><A HREF="Window.html#v%3ADisabled"
+>Disabled</A
+></TT
+>
+ will still draw the window, but it will not respond to click-events. <TT
+><A HREF="Window.html#v%3AHidden"
+>Hidden</A
+></TT
+> ensures
+ the window is not drawn, nor responds to click events.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AEnabled"
+></A
+><B
+>Enabled</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADisabled"
+></A
+><B
+>Disabled</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AHidden"
+></A
+><B
+>Hidden</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:WindowState')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:WindowState" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3AWindowState"
+>WindowState</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3AWindowState"
+>WindowState</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AStyle"
+></A
+><B
+>Style</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Base styles that can be applied to windows, also including attributes that control
+ the window's dimensions
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACustomStyle"
+></A
+><B
+>CustomStyle</B
+> (<A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>])</TD
+><TD CLASS="rdoc"
+>For future enhancement
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ABackground"
+></A
+><B
+>Background</B
+> <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+><TD CLASS="rdoc"
+>Background fill for the entire window area
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AFrame"
+></A
+><B
+>Frame</B
+> <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+><TD CLASS="rdoc"
+>Frame around the window, in specific colour and width
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALockTop"
+></A
+><B
+>LockTop</B
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+><TD CLASS="rdoc"
+>Lock the edges of the window to top, bottom, left and right
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALockBottom"
+></A
+><B
+>LockBottom</B
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALockLeft"
+></A
+><B
+>LockLeft</B
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALockRight"
+></A
+><B
+>LockRight</B
+> <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AFillParent"
+></A
+><B
+>FillParent</B
+></TD
+><TD CLASS="rdoc"
+>Window will fill the area bounded by its parent
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="8"
+>Messaging types
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AMessageHandler"
+></A
+><B
+>MessageHandler</B
+> = <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+> -&gt; <A HREF="Window.html#t%3AQueryFunction"
+>QueryFunction</A
+> -&gt; <A HREF="Window.html#t%3AResponse"
+>Response</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A message handler takes a window and message and 
+ returns a response to the message. The message handler is usually a partially-applied
+ function that has a parameter representing state of the window. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AQueryFunction"
+></A
+><B
+>QueryFunction</B
+> = <A HREF="Window.html#t%3AID"
+>ID</A
+> -&gt; <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+> -&gt; <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>A QueryFunction is passed to windows during a message-send to allow them to query
+ the state of other windows
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AStateHandle"
+></A
+><B
+>StateHandle</B
+> = Int</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A StateHandle is a unique identifier used by each window to refer to all or
+ part of the state of the window; i.e. its interpretation is window-specific.
+ For example, a window can use the value '0' to mean its complete state, or
+ just a part of that state
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AMessage"
+></A
+><B
+>Message</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A Message combines an address and body to enable a message to be sent
+ to specific addresses, which may be a specified window, or a set of windows,
+ or all windows
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMessage"
+></A
+><B
+>Message</B
+> <A HREF="Window.html#t%3AMessageAddress"
+>MessageAddress</A
+> <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AMessageAddress"
+></A
+><B
+>MessageAddress</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>MessageAddress specifies where to send a specific message to. 
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AAll"
+></A
+><B
+>All</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AFirst"
+></A
+><B
+>First</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AOne"
+></A
+><B
+>One</B
+> <A HREF="Window.html#t%3AID"
+>ID</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:MessageAddress')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:MessageAddress" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3AMessageAddress"
+>MessageAddress</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3AMessageAddress"
+>MessageAddress</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AMessageBody"
+></A
+><B
+>MessageBody</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>The body of a message to be sent to a window
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALeftButtonDown"
+></A
+><B
+>LeftButtonDown</B
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> [<A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+>]</TD
+><TD CLASS="rdoc"
+>Mouse click at a position, and a list of OpenGL object IDs that were underneath
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ALeftDrag"
+></A
+><B
+>LeftDrag</B
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+><TD CLASS="rdoc"
+>Mouse-down drag events with delta and absolute coordinates of movement
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADraw"
+></A
+><B
+>Draw</B
+></TD
+><TD CLASS="rdoc"
+>Request to redraw the window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AStateQuery"
+></A
+><B
+>StateQuery</B
+> <A HREF="Window.html#t%3AStateHandle"
+>StateHandle</A
+></TD
+><TD CLASS="rdoc"
+>Request for the window to return all, or part, of its state (as a StateValue response)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AStateUpdateNotify"
+></A
+><B
+>StateUpdateNotify</B
+> <A HREF="Window.html#t%3AID"
+>ID</A
+> (Maybe <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+>)</TD
+><TD CLASS="rdoc"
+>Notification to the window that another window has updated its internal state
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AKey"
+></A
+><B
+>Key</B
+> Char</TD
+><TD CLASS="rdoc"
+>Keypressed in the window
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AAppWindowResize"
+></A
+><B
+>AppWindowResize</B
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+><TD CLASS="rdoc"
+>The main application window has been resized to the specified dimensions
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AParentResize"
+></A
+><B
+>ParentResize</B
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+><TD CLASS="rdoc"
+>The parent of the window has been resized to the specified dimensions
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AMoveWindow"
+></A
+><B
+>MoveWindow</B
+> <A HREF="Window.html#t%3ACoordinate"
+>Coordinate</A
+></TD
+><TD CLASS="rdoc"
+>A request for the window to move itself to the new coordinates
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:MessageBody')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:MessageBody" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3AMessageBody"
+>MessageBody</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AResponse"
+></A
+><B
+>Response</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A Response is reported by a window's message handler after it has processed
+ a message sent to it.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AUpdate"
+></A
+><B
+>Update</B
+> <A HREF="Window.html#t%3AWindow"
+>Window</A
+> (Maybe <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+>)</TD
+><TD CLASS="rdoc"
+>The window updated itself (usually: change to the handleMessage function). The
+ update includes the new window itself. If the SyncMessage is something, then
+ this response may trigger further updates in response to the update of 
+ the window that has just happened (see <TT
+><A HREF="Window.html#v%3AsendMessage"
+>sendMessage</A
+></TT
+>)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AUpdatePrivate"
+></A
+><B
+>UpdatePrivate</B
+> <A HREF="Window.html#t%3AWindow"
+>Window</A
+></TD
+><TD CLASS="rdoc"
+>The window updated itself, but no follow-up broadcast to other windows should occur
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ADrawCmds"
+></A
+><B
+>DrawCmds</B
+> [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+>Graphics commands to draw the window (response to Draw message)
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AResponse"
+></A
+><B
+>Response</B
+> <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+></TD
+><TD CLASS="rdoc"
+>Response to a state enquiry, see below
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANoResponse"
+></A
+><B
+>NoResponse</B
+></TD
+><TD CLASS="rdoc"
+>Window ignored message
+</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3ASyncMessage"
+></A
+><B
+>SyncMessage</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>A SyncMessage can be sent out by a window in an <TT
+><A HREF="Window.html#v%3AUpdate"
+>Update</A
+></TT
+> response to a Message,
+ in order to tell the rest of the windows that its state has been updated, or
+ it has been clicked.
+</TD
+></TR
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AClicked"
+></A
+><B
+>Clicked</B
+></TD
+><TD CLASS="rdoc"
+>The window responded to a click event
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASyncVar"
+></A
+><B
+>SyncVar</B
+> (Int, <A HREF="WindowMessage.html#t%3AStateValue"
+>StateValue</A
+>)</TD
+><TD CLASS="rdoc"
+>The window updated one of its internal variables
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:SyncMessage')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:SyncMessage" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Window.html#t%3ASyncMessage"
+>SyncMessage</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="9"
+>Miscellaneous types/functions
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AframedStyle"
+></A
+><B
+>framedStyle</B
+> :: [<A HREF="Window.html#t%3AStyle"
+>Style</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Shortcut to define a window with a white background and a black, single pixel frame
+ around it
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AexpandWithChildren"
+></A
+><B
+>expandWithChildren</B
+> :: <A HREF="Window.html#t%3AWindow"
+>Window</A
+> -&gt; [<A HREF="Window.html#t%3AWindow"
+>Window</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Flatten the window and children into a linear list 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="10"
+>User Guide
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Some guide text
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="11"
+>Overview
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="12"
+>Creating a window heirarchy
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="13"
+>Message Handling
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The message handling functions are the heart of the window system, as not only do they
+ allow windows to communicate with each other and the outside world, they also are the
+ mechanism for a window to have some window-specific information or state associated with
+ it.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section2"
+><A NAME="14"
+>Global/shared variables
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.3.0</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

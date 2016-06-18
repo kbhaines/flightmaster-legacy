@@ -1,0 +1,5 @@
+InsertCheckpoint (Checkpoint 0) 0
+InsertCheckpoint (Checkpoint 1) 1
+InsertCheckpoint (Checkpoint 2) 2
+InsertCheckpoint (Checkpoint 3) 3
+ReportCheckpoints

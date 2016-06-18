@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>MessageProcessor</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>MessageProcessor</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><B
+>Contents</B
+></TD
+></TR
+><TR
+><TD
+><DL
+><DT
+><A HREF="#1"
+>Functions
+</A
+></DT
+><DT
+><A HREF="#2"
+>Types
+</A
+></DT
+></DL
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A MessageProcessor is an abstraction mechanism that sits in front of
+ an MVar, and allows an interface function to accept messages that act
+ on and modify the contents of the MVar in an atomic manner. The interface
+ function is supplied by the user
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AnewMessageProcessor"
+>newMessageProcessor</A
+> ::  a -&gt; <A HREF="MessageProcessor.html#t%3AMessageHandler"
+>MessageHandler</A
+> a msg res -&gt; IO (<A HREF="MessageProcessor.html#t%3AMessageProcessor"
+>MessageProcessor</A
+> msg res)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AMessageProcessor"
+>MessageProcessor</A
+> msg res = msg -&gt; IO res</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AMessageHandler"
+>MessageHandler</A
+> a msg res = a -&gt; msg -&gt; (a, res)</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="1"
+>Functions
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnewMessageProcessor"
+></A
+><B
+>newMessageProcessor</B
+> ::  a -&gt; <A HREF="MessageProcessor.html#t%3AMessageHandler"
+>MessageHandler</A
+> a msg res -&gt; IO (<A HREF="MessageProcessor.html#t%3AMessageProcessor"
+>MessageProcessor</A
+> msg res)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a new <TT
+><A HREF="MessageProcessor.html#t%3AMessageProcessor"
+>MessageProcessor</A
+></TT
+>, returning a handle to it that can be used
+ by the client. 
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+><A NAME="2"
+>Types
+</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AMessageProcessor"
+></A
+><B
+>MessageProcessor</B
+> msg res = msg -&gt; IO res</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>A function that accepts a message and updates the underlying MVar. This is
+ the abstraction that the client/user code deals with; simply send a message
+ to the MessageProcessor e.g. 
+</P
+><PRE
+>
+ -- create a MessageProcessor for an integer, initialised to 1
+ mp <A HREF="- newMessageProcessor (1::Int) (\val msg -"
+>- newMessageProcessor (1::Int) (\val msg -</A
+> (val+1, True ::Bool))
+ -- send a '2' to the processor, get the result
+ result &lt;- mp 2
+</PRE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AMessageHandler"
+></A
+><B
+>MessageHandler</B
+> a msg res = a -&gt; msg -&gt; (a, res)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A user-supplied function that takes a value of the underlying type and a
+ message, and returns the updated value and a result code, based on the
+ message.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.3.0</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

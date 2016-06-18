@@ -1,0 +1,1 @@
+Mix "Test\\All.hs" 1251710910 1133493979 1 [(13:5-13:24,ExpBox False),(14:5-14:26,ExpBox False),(15:5-15:22,ExpBox False),(16:5-16:19,ExpBox False),(12:8-16:19,ExpBox False),(12:1-16:19,TopLevelBox ["main"])]

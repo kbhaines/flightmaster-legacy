@@ -1,0 +1,474 @@
+module Main where
+
+--- Timeit
+
+import System.CPUTime
+import Text.Printf
+import Char
+import IO
+import System
+import System.IO
+import Data.Binary
+import qualified Data.Set as DS
+
+import Utils
+import qualified Waypoint as WP
+import Airspace
+import FlightPlan
+
+import Map
+import Terrain
+
+import qualified GPS
+
+import qualified Data.ByteString.Lazy.Char8 as BSC
+import Control.Concurrent
+import System.Process
+import MessageProcessor
+
+import Coord 
+import qualified GPS
+
+import Maybe
+import Network
+import Graphics.Rendering.OpenGL
+import Graphics.UI.GLUT
+import Data.IORef
+
+import Graphics
+import Control.Monad
+
+import qualified Window as Win
+import WindowMessage
+
+import Control
+import UI
+
+import Data.Time.Clock
+import Data.Time.Calendar
+
+data GlobalState = GlobalState {
+
+    gsGPSRef  :: GPS.GPSMessageProcessor
+  , gsUIState :: Win.Window
+  , gsTextureManager :: GraphicsTextureManager
+
+  , gsMouseClickInfo :: (Position, Win.ID, UTCTime) -- Position and time of click, while left button held
+  , gsDragInfo :: Maybe Position                    -- Position of drag point
+
+}
+-------------------------------------------------------------------------------
+
+timeIt :: IO t -> IO t
+timeIt a = do
+    start <- getCPUTime
+    v <- a
+    end <- getCPUTime 
+    let diff=(fromIntegral (end-start)/(10^12))
+    --printf "Computation Time: %0.3f sec (%0.3fHz)\n" (diff::Double) ((1/diff)::Double)
+    return v
+
+-------------------------------------------------------------------------------
+
+openGLInit :: IO() 
+    -> Maybe (Size -> IO ())
+    -> Maybe (Key -> KeyState -> Modifiers -> Position -> IO ()) 
+    -> Maybe (IO ())
+    -> Maybe (Position -> IO ()) 
+    -> IO ()
+    -> IO ()
+
+openGLInit display reshape keyboard idle motion timer = do
+    -- TODO: Some GL+GLUT init needs to go into Graphics.hs
+    (progname,_) <- getArgsAndInitialize
+    initialDisplayMode $= [DoubleBuffered, WithDepthBuffer]
+    createWindow "FlightMaster Delta"
+    windowSize $= Size 640 400
+    --enterGameMode
+    --fullScreen
+    
+    --passiveMotionCallback $= Just motion
+    displayCallback $= display
+    reshapeCallback $= reshape
+    keyboardMouseCallback $= keyboard
+    idleCallback $= idle
+    motionCallback $= motion
+    addTimerCallback 1000 timer
+    mainLoop
+
+
+-------------------------------------------------------------------------------
+
+reshape :: IORef GlobalState -> Size -> IO ()
+reshape gState s@(Size w h) = do 
+    debug1 "Reshape called " s
+    gState'@(GlobalState gps ui texmgr _ _) <- readIORef gState
+    let [w',h'] = map fromIntegral [w,h]
+        newui = Win.sendMessage ui (Win.Message Win.All (Win.AppWindowResize (w',h')))
+    debug "  Events sent"
+    viewport $= (Position 0 0, s)
+    writeIORef gState (gState' { gsUIState = newui } )
+
+
+-------------------------------------------------------------------------------
+
+idle :: IO ()
+idle = do
+    postRedisplay Nothing
+    debug " idle.."
+
+
+-------------------------------------------------------------------------------
+
+execIORef :: IORef a -> (a -> b) -> IO b
+execIORef ref f = do
+    ref' <- readIORef ref
+    return (f ref')
+
+-------------------------------------------------------------------------------
+
+timerCallback :: IORef GlobalState -> (Int,Int) -> IO ()
+timerCallback _ (1,_) = error "Done"
+timerCallback gState (iteration,delay) = do
+    gState' <- readIORef gState
+
+    -- if dragging, then dragTimerCallback takes care of redrawing the screen
+    if gsDragInfo gState' /= Nothing then 
+       return ()
+     else do
+       postRedisplay Nothing
+
+    addTimerCallback delay (timerCallback gState (newIteration iteration,delay))
+
+    debug "tc1"
+    where
+        newIteration 0 = 0
+        newIteration n = n - 1
+
+-------------------------------------------------------------------------------
+-- only called when the user is dragging the mouse, in which case we
+-- need to send more regular updates. This is a workaround due to Linux
+-- having too many motion events sent during drag operations.
+
+dragTimerCallback :: IORef GlobalState -> IO ()
+dragTimerCallback gState = do
+    debug "tc2"
+    postRedisplay Nothing
+    gState' <- readIORef gState
+    if gsDragInfo gState' /= Nothing then
+        addTimerCallback 200 (dragTimerCallback gState)
+      else
+        return ()
+
+
+-------------------------------------------------------------------------------
+
+keyboardCallback :: IORef GlobalState -> Key -> KeyState -> Modifiers -> Position -> IO ()
+
+keyboardCallback gState (Char 'Q') _ _ _ = do 
+    gState' <- readIORef gState
+    let (SVFlightPlan fp) = Win.readPublicVariable (gsUIState gState') mapWindowID globalFlightPlan
+        (SVCoord mapPosn) = Win.readPublicVariable (gsUIState gState') mapWindowID mapVarPosition
+
+    saveState stateFilename (fp, Just mapPosn)
+    error "Done"
+
+keyboardCallback gState (Char chr) Down _ _ = do 
+    modifyIORef gState (sendOutKeyEvent chr)
+    where
+        sendOutKeyEvent :: Char -> GlobalState -> GlobalState
+        sendOutKeyEvent chr gState' = gState' { 
+            gsUIState = Win.sendMessage (gsUIState gState') (Win.Message Win.First (Win.Key chr))
+        }
+
+
+keyboardCallback gState (MouseButton LeftButton) Down _ pos@(Position x y) = do
+    gState' <- readIORef gState
+    elementList <- screenPick gState' $ GraphicsPosition (x',y')
+    GraphicsSize (w,h) <- graphicsGetViewport
+
+    let (clickedWin, posInWin) 
+         | not $ null candidates = head $ candidates 
+         | otherwise = error "No window candidates"
+        candidates = Win.pickWindows (gsUIState gState') (GraphicsPosition (x,y))
+        newgui = Win.sendMessage (gsUIState gState') 
+            (Win.Message (Win.One clickedWin) 
+            (Win.LeftButtonDown (GraphicsPosition (x,y)) elementList))
+
+    debug $ show (gsUIState gState')
+    debug $ show (map Win.ident $ Win.expandWithChildren $ newgui)
+    debug $ show (clickedWin, candidates)
+
+    let x1 = fromIntegral x - (fromIntegral w/2)
+        y1 = -(fromIntegral y - (fromIntegral h/2))
+
+    if elementList /= [] then do
+        debug $ show elementList
+      else
+        debug "Left click"
+
+    currentTime <- getCurrentTime
+    writeIORef gState (gState' { gsMouseClickInfo = (pos, clickedWin, currentTime), gsUIState = newgui } )
+    screenDraw gState
+    where
+        [x',y'] = map fromIntegral [x,y]
+
+
+keyboardCallback gState (MouseButton LeftButton) Up _ (Position x y) = do
+    gState' <- readIORef gState
+    if (gsDragInfo gState' /= Nothing) then do
+        let (Position startX startY,_,_) = gsMouseClickInfo gState'
+            (dragX, dragY) = (x - startX, y - dragY)
+        debug $ "Dragged" -- show (dragX, dragY) -- causes process hang?
+      else
+        debug "No drag"
+    writeIORef gState gState' { gsDragInfo = Nothing }
+    screenDraw gState
+
+
+keyboardCallback gState key state modifiers position = do
+    gState' <- readIORef gState
+    --gState $= gState' { gsMapState = mapKeyboard (gsMapState gState') key state modifiers position }
+    postRedisplay Nothing
+
+-------------------------------------------------------------------------------
+
+mouseMotionCallback :: IORef GlobalState -> Position -> IO ()
+mouseMotionCallback gState pos@(Position x y) = do
+    gState' <- readIORef gState
+    currentTime <- getCurrentTime
+
+    let (Position startX startY, winId, startTime) = gsMouseClickInfo gState'
+
+    -- TODO: CODESMELL
+    let (oldDragPos,newDragPos,startingDrag) = if (gsDragInfo gState' == Nothing) then
+            if (magnitudeOf (x-startX, y-startY) > threshold) then 
+                (Just $ Position startX startY, Just $ Position x y, True)
+              else
+                (Nothing,Nothing, False)
+          else
+              (gsDragInfo gState', Just $ Position x y, False)
+
+    let (_,clickedWin,_) = gsMouseClickInfo gState' 
+    let newGui = if (newDragPos /= Nothing) then
+                    let Just (Position oldx oldy) = oldDragPos in
+                    Win.sendMessage (gsUIState gState')
+                        (Win.Message (Win.One clickedWin) 
+                            (Win.LeftDrag (GraphicsPosition (x-oldx,y-oldy)) (GraphicsPosition (x-startX,y-startY)))
+                        )
+                  else
+                    gsUIState gState'
+
+    if startingDrag then
+        addTimerCallback 200 (dragTimerCallback gState)
+      else 
+        return ()
+
+    debug $ show (pos, winId, newDragPos, x - startX,y - startY, diffUTCTime currentTime startTime)
+
+    writeIORef gState gState' { gsUIState = newGui, gsDragInfo = newDragPos }
+    --Removed, because of Linux redraw/drag issue
+    --screenDraw gState
+
+    where threshold = 30^2
+          magnitudeOf (x,y) = (x^2 + y^2)
+
+-------------------------------------------------------------------------------
+
+-- returns present GPS position if available (Bool = true), or the last
+-- know position if not (Bool = false). If no position ever recorded, returns
+-- Nothing
+-- TODO: Change return value to a type
+getGPSPosn :: GPS.GPSMessageProcessor -> IO (Maybe (Bool, GPS.GPSData))
+getGPSPosn gpsref = do
+    (GPS.GPSResponse gpsData)  <- gpsref GPS.GetGPS
+    --debug $ show gpsData
+    if (GPS.position gpsData /= Nothing && GPS.velocity gpsData /= Nothing) then
+        return $ (Just (True,gpsData))
+      else
+        if (GPS.history gpsData == Nothing || (GPS.position.fromJust.GPS.history) gpsData == Nothing) then
+            return Nothing
+          else
+            return $ Just (False, fromJust.GPS.history $ gpsData)
+    
+-------------------------------------------------------------------------------
+
+data CommandLineOptions = CommandLineOptions {
+
+    waypointsFilename :: String
+  , airspaceFilename :: String
+  , terrainDirectory :: String
+  , gpsPort :: String
+  , startAtIdent :: String
+  , benchMarking :: Bool
+
+}
+
+getCmdOptions :: CommandLineOptions -> [String] -> CommandLineOptions
+getCmdOptions defaults [] = defaults
+getCmdOptions defaults (flag:[]) = error (flag ++ " option missing an argument")
+getCmdOptions defaults (flag:val:args) = 
+    case flag of
+     "-w"   -> getCmdOptions (defaults { waypointsFilename = val }) args
+     "-a"   -> getCmdOptions (defaults { airspaceFilename = val }) args
+     "-t"   -> getCmdOptions (defaults { terrainDirectory = val }) args
+     "-g"   -> getCmdOptions (defaults { gpsPort = val }) args
+     "-i"   -> getCmdOptions (defaults { startAtIdent = val }) args
+     "-b"   -> getCmdOptions (defaults { benchMarking = True} ) args
+     _ -> error ("Unrecognised option: " ++ flag)
+
+
+-------------------------------------------------------------------------------
+
+stateFilename = "data/savestate"
+
+loadState :: (Read a) => String -> a -> IO a
+loadState file def = do 
+    (do str <- readFile file ; return (read str)) 
+    `catch` 
+        (\_ -> return def)
+
+-------------------------------------------------------------------------------
+
+saveState :: (Show a) => String -> a -> IO ()
+saveState file val = writeFile file $ show val
+
+-------------------------------------------------------------------------------
+
+main = do
+    commandLineArgs <- getArgs
+
+    let userOptions = getCmdOptions (CommandLineOptions "data/waypoints.dat" "data/airspace.dat" "data/terrain/" "15" "NONE" False) commandLineArgs
+
+    -- load and initialise databases
+    sysWpdb <- WP.loadDatabase $ waypointsFilename userOptions
+    asdb <- Airspace.loadDatabase $ airspaceFilename userOptions
+    trdb <- Terrain.openDB $ terrainDirectory userOptions
+    userdb <- (\l -> map WP.mkWaypoint (lines l)) `liftM` readFile "data/userwaypoints.dat"
+
+    textureManager <- newTextureManager $ terrainTextureLookup trdb
+
+    gpsref <- GPS.gpsInit $ gpsPort userOptions
+
+    (savedFlightPlan,savedMapPosn) <- loadState stateFilename (blankPlan,Just (mkCoord $ mkSString "N51400000W002000000" )) 
+
+    let wpdb = foldl WP.addWaypoint sysWpdb userdb
+        matches=WP.findAllByIdent wpdb (startAtIdent userOptions)
+        initMapPos = if null matches then savedMapPosn else (Just $ (WP.coord.WP.waypointData $ head matches))
+        initMapParams =
+            MapState initMapPos 40.0 False (0::Double) 
+            (DS.fromList [ClassA, ClassB,ClassC,ClassD,SUAS]) Nothing wpdb asdb
+            (getGPSPosn gpsref) savedFlightPlan
+
+        initUIState = 0
+
+        trackWin = Win.newWindow (Win.ID 4) [] "Track" (dataDisplayStyle++[Win.LockLeft 10,Win.LockBottom 10])
+            (Win.Bounds ((0,0),(70,30))) (Just $ flightDataWinHandleEvent gpsref 0)
+
+        speedWin = Win.newWindow (Win.ID 5) [altWin,trackWin] "Speed" (dataDisplayStyle++[Win.LockLeft 10,Win.LockTop 10])
+            (Win.Bounds ((0,0),(100,100))) (Just $ flightDataWinHandleEvent gpsref 10)
+
+        altWin = Win.newWindow (Win.ID 6) [] "Alt" (dataDisplayStyle++[Win.LockRight 10, Win.LockTop 40])
+            (Win.Bounds ((0,0),(70,30))) (Just $ flightDataWinHandleEvent gpsref 20)
+
+        mapWindow = Win.newWindow mapWindowID
+            [airspaceClassSelectorWindow { Win.displayState = Win.Enabled }
+             --,planWindow
+             , configButton, plannerWindow {Win.displayState = Win.Hidden}
+             , zoomInButton, zoomOutButton
+              ] 
+            "Map" [Win.FillParent] (Win.Bounds ((0,0),(0,0))) (Just $ mapHandleEvent initMapParams)
+
+        mainWindow = Win.newWindow (Win.ID 0) [mapWindow] "Main" [Win.FillParent] 
+         (Win.Bounds ((0,0),(0,0)))
+            (Just $ mainWindowHandleEvent Nothing)
+
+    globalState <- newIORef (GlobalState gpsref mainWindow textureManager (Position 0 0, Win.ID 0, UTCTime (ModifiedJulianDay 0) 0) Nothing)
+
+    openGLInit (timeIt $ screenDraw globalState >> hFlush stdout) 
+        (Just (reshape globalState))
+        (Just (keyboardCallback globalState))
+        (Nothing)
+        (Just (mouseMotionCallback globalState))
+        (if (benchMarking userOptions) then (timerCallback globalState (100,1)) else (timerCallback globalState (0,1000)))
+
+    -- we never come back from here, mainLoop is called
+ 
+
+-------------------------------------------------------------------------------
+
+type GPSWrap = Maybe (Bool, GPS.GPSData)
+
+mainWindowHandleEvent :: GPSWrap -> Win.Window -> Win.MessageBody -> Win.QueryFunction -> Win.Response
+mainWindowHandleEvent _ win (Win.StateUpdateNotify _ (Just (Win.SyncVar (svid, SVGPSData gps)))) _ 
+ | svid == globalGPSPosition = Win.UpdatePrivate (win { Win.handleMessage = mainWindowHandleEvent gps})
+ | otherwise = error (show svid)
+
+mainWindowHandleEvent gps _ (Win.StateQuery hdl) _ 
+ | hdl == globalGPSPosition = Win.Response $ SVGPSData gps
+
+mainWindowHandleEvent _ _ _ _ = Win.NoResponse
+
+-------------------------------------------------------------------------------
+
+flightDataWinHandleEvent :: GPS.GPSMessageProcessor -> Int -> Win.Window -> Win.MessageBody -> Win.QueryFunction -> Win.Response
+flightDataWinHandleEvent gpsref counter win (Win.LeftButtonDown _ _) _ = 
+    Win.Update (win { Win.handleMessage = flightDataWinHandleEvent gpsref (counter+1) }) Nothing
+
+flightDataWinHandleEvent gpsref counter win (Win.Key 'Z') _ = Win.Update 
+    (win { Win.handleMessage = flightDataWinHandleEvent gpsref (counter+2) }) Nothing
+
+flightDataWinHandleEvent gpsref counter win Win.Draw _ = Win.DrawCmds $ flightDataWinRedraw gpsref counter win
+flightDataWinHandleEvent _ counter _ (Win.StateQuery _) _ = Win.Response $ IntValue counter
+
+flightDataWinHandleEvent _ _ _ _ _ = Win.NoResponse
+
+dataDisplayStyle = [Win.Background $ GraphicsColour3 1 1 1, Win.Frame (GraphicsColour3 0 0 0) 1.0 ]
+
+flightDataWinRedraw :: GPS.GPSMessageProcessor -> Int -> Win.Window -> [GraphicsCmd]
+flightDataWinRedraw gpsref counter win = [ 
+    EscapeIO $ do
+        pos <- getGPSPosn gpsref
+        if (pos == Nothing) then do
+            return [RasterText 3 (0,20,0) (GraphicsColour3 1 0 0) $ show counter]
+          else do
+            let (Just (lock, gps)) = pos
+            if lock then do
+                return $ [RasterText 3 (0,20,0) (GraphicsColour3 0 0 0) $ (val gps)]
+               else do
+                return $ [RasterText 3 (0,20,0) (GraphicsColour3 0 0 0) "Lost" ]
+
+   ]
+   where val v = case Win.ident win of 
+                (Win.ID 4) -> (show $ truncate $ GPS.track v)++"deg"
+                (Win.ID 5) -> (show $ truncate $ GPS.speed v) ++ "kts"
+                (Win.ID 6) -> (show $ GPS.altitude v) ++ "ft"
+                (Win.ID 3) -> ""
+
+
+-------------------------------------------------------------------------------
+
+
+screenPick :: GlobalState -> GraphicsPosition -> IO [GraphicsName]
+screenPick gState selection = do
+    screenSize@(GraphicsSize (sx,sy)) <- graphicsGetViewport
+    let projParams@(sx',sy',sz') = (fromIntegral sx/2, fromIntegral sy/2,4000) :: Graphics3d
+    let userInterface = Win.draw $ gsUIState gState
+    graphicsHits (gsTextureManager gState) $ concat [ [InitPicking projParams selection] , [RelTranslate (-sx',sy',0) userInterface] ]
+
+-------------------------------------------------------------------------------
+
+screenDraw :: IORef GlobalState -> IO ()
+screenDraw gState = do
+    --debug "screenDraw.."
+    gState' <- readIORef gState
+    newGPS <- getGPSPosn (gsGPSRef gState')
+    screenSize@(GraphicsSize (sx,sy)) <- graphicsGetViewport
+    let projection@(sx',sy',sz') = (fromIntegral sx/2, fromIntegral sy/2,4000) :: Graphics3d
+        newGUI = Win.updatePublicVariable (gsUIState gState') globalWindowID globalGPSPosition (SVGPSData newGPS)
+        userInterface = Win.draw $ newGUI
+
+    writeIORef gState (gState' { gsUIState = newGUI })
+
+    -- Translate the origin to the topleft corner of the window
+    graphicsProcess (gsTextureManager gState') $ concat [[InitDrawing projection] , [RelTranslate (-sx',sy',0) userInterface] , [FinishedDrawing] ]

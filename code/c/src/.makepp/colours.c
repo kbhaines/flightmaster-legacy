@@ -1,0 +1,5 @@
+INCLUDES=Colours.h GlobalTypes.h Modules.h Platform.h
+SYSTEM_INCLUDES=
+C_MD5_SUM=9b9cbf1cd4d567e7a50d387b1addc1b2
+SIGNATURE=1220198350
+END=

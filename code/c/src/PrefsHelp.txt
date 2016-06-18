@@ -1,0 +1,9 @@
+The Units setting controls which units (Nm=Nautical, Mi=Statute Miles, Km=Kilometers) you want to display on the navigation screen. You may use the units you have specified within the Flight Planner.
+
+The Headings setting controls display of True or Magnetic bearings & headings. Compass bearings (e.g. FROM = S S E) are ALWAYS relative to true north.
+
+Source allows you to specify what sort of GPS you are using - most work with Cradle, but some may require the Serial setting. Restart the GPS from the GPS screen for the change to take effect.
+
+Select GPS jitter correction if you are sure that your GPS is sending data at one-second intervals, but you are experiencing jitter on the VSI & AA (useful for older GPS receivers and FS2002/2004).
+
+Select the Auto-start GPS checkbox to start the GPS on application launch.

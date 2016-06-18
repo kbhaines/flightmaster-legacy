@@ -1,0 +1,5 @@
+INCLUDES=GlobalTypes.h Platform.h Polygon.h
+SYSTEM_INCLUDES=
+C_MD5_SUM=da8fdba99e1b2b8fe1f6d79f234a7c8f
+SIGNATURE=1220198350
+END=

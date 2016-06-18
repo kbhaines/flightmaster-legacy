@@ -1,0 +1,1465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Graphics</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Graphics</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsFloat"
+></A
+><B
+>GraphicsFloat</B
+> = GLfloat</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsInt"
+></A
+><B
+>GraphicsInt</B
+> = GLint</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsUInt"
+></A
+><B
+>GraphicsUInt</B
+> = GLuint</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphics1d"
+></A
+><B
+>Graphics1d</B
+> = GLdouble</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsAngle"
+></A
+><B
+>GraphicsAngle</B
+> = GLdouble</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphics2d"
+></A
+><B
+>Graphics2d</B
+> = (<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+>, <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphics3d"
+></A
+><B
+>Graphics3d</B
+> = (<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+>, <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+>, <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsStipple"
+></A
+><B
+>GraphicsStipple</B
+> = Maybe (GLint, GLushort)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ApointToPlane"
+></A
+><B
+>pointToPlane</B
+> :: <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AGraphicsColour"
+></A
+><B
+>GraphicsColour</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsColour3"
+></A
+><B
+>GraphicsColour3</B
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsColour4"
+></A
+><B
+>GraphicsColour4</B
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+> <A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsColour')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsColour" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AGraphicsTextureReference"
+></A
+><B
+>GraphicsTextureReference</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsTextureReference"
+></A
+><B
+>GraphicsTextureReference</B
+> Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsTextureReference')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsTextureReference" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Ord <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AGraphicsTexture"
+></A
+><B
+>GraphicsTexture</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsTexture"
+></A
+><B
+>GraphicsTexture</B
+> (Int, Int, Ptr Word8)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3AGraphicsTextureLoader"
+></A
+><B
+>GraphicsTextureLoader</B
+> = <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+> -&gt; IO <A HREF="Graphics.html#t%3AGraphicsTexture"
+>GraphicsTexture</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AGraphicsPosition"
+></A
+><B
+>GraphicsPosition</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsPosition"
+></A
+><B
+>GraphicsPosition</B
+> (<A HREF="Graphics.html#t%3AGraphicsInt"
+>GraphicsInt</A
+>, <A HREF="Graphics.html#t%3AGraphicsInt"
+>GraphicsInt</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsPosition')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsPosition" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AGraphicsSize"
+></A
+><B
+>GraphicsSize</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsSize"
+></A
+><B
+>GraphicsSize</B
+> (<A HREF="Graphics.html#t%3AGraphicsInt"
+>GraphicsInt</A
+>, <A HREF="Graphics.html#t%3AGraphicsInt"
+>GraphicsInt</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsSize')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsSize" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Graphics.html#t%3AGraphicsSize"
+>GraphicsSize</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsSize"
+>GraphicsSize</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsSize"
+>GraphicsSize</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t%3AGraphicsName"
+></A
+><B
+>GraphicsName</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsName"
+></A
+><B
+>GraphicsName</B
+> <A HREF="Graphics.html#t%3AGraphicsUInt"
+>GraphicsUInt</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsName')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsName" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AGraphicsCmd"
+></A
+><B
+>GraphicsCmd</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANullOp"
+></A
+><B
+>NullOp</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AInitDrawing"
+></A
+><B
+>InitDrawing</B
+> <A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AInitPicking"
+></A
+><B
+>InitPicking</B
+> <A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AProjectionParams"
+></A
+><B
+>ProjectionParams</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPP"
+></A
+><B
+>cmdPP</B
+> :: <A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APolygon"
+></A
+><B
+>Polygon</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPGColour"
+></A
+><B
+>cmdPGColour</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPGWidth"
+></A
+><B
+>cmdPGWidth</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPGStipple"
+></A
+><B
+>cmdPGStipple</B
+> :: !(Maybe (GLint, GLushort))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPGPoints"
+></A
+><B
+>cmdPGPoints</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsPolygonDefinition"
+>GraphicsPolygonDefinition</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3APolyline"
+></A
+><B
+>Polyline</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPLColour"
+></A
+><B
+>cmdPLColour</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPLWidth"
+></A
+><B
+>cmdPLWidth</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsFloat"
+>GraphicsFloat</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPLStipple"
+></A
+><B
+>cmdPLStipple</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsStipple"
+>GraphicsStipple</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdPLPoints"
+></A
+><B
+>cmdPLPoints</B
+> :: ![<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ANamedCmd"
+></A
+><B
+>NamedCmd</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdName"
+></A
+><B
+>cmdName</B
+> :: !<A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AcmdNamedCmds"
+></A
+><B
+>cmdNamedCmds</B
+> :: ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ACircle"
+></A
+><B
+>Circle</B
+> !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> !<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> !<A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ASquare"
+></A
+><B
+>Square</B
+> !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> !<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> !<A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ARasterText"
+></A
+><B
+>RasterText</B
+> !Int !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> !<A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+> !String</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATranslate"
+></A
+><B
+>Translate</B
+> !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ARelTranslate"
+></A
+><B
+>RelTranslate</B
+> !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATransRotate"
+></A
+><B
+>TransRotate</B
+> Bool !<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+> !<A HREF="Graphics.html#t%3AGraphicsAngle"
+>GraphicsAngle</A
+> ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ARotate"
+></A
+><B
+>Rotate</B
+> !<A HREF="Graphics.html#t%3AGraphicsAngle"
+>GraphicsAngle</A
+> ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AScale"
+></A
+><B
+>Scale</B
+> !<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> !<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> !<A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> ![<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AEscapeIO"
+></A
+><B
+>EscapeIO</B
+> !(IO [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>])</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AFinishedDrawing"
+></A
+><B
+>FinishedDrawing</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsCmd')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsCmd" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AGraphicsPolygonDefinition"
+></A
+><B
+>GraphicsPolygonDefinition</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AUntexturedPolygon"
+></A
+><B
+>UntexturedPolygon</B
+> [<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ATexturedPolygon"
+></A
+><B
+>TexturedPolygon</B
+> <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+> [(<A HREF="Graphics.html#t%3AGraphics3d"
+>Graphics3d</A
+>, <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+>)]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GraphicsPolygonDefinition')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GraphicsPolygonDefinition" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Graphics.html#t%3AGraphicsPolygonDefinition"
+>GraphicsPolygonDefinition</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Graphics.html#t%3AGraphicsPolygonDefinition"
+>GraphicsPolygonDefinition</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3AGraphicsTextureManager"
+></A
+><B
+>GraphicsTextureManager</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AGraphicsTextureManager"
+></A
+><B
+>GraphicsTextureManager</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AtextureLoader"
+></A
+><B
+>textureLoader</B
+> :: <A HREF="Graphics.html#t%3AGraphicsTextureLoader"
+>GraphicsTextureLoader</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3AtextureMap"
+></A
+><B
+>textureMap</B
+> :: IORef (Map <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+> TextureObject)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AnewTextureManager"
+></A
+><B
+>newTextureManager</B
+> :: <A HREF="Graphics.html#t%3AGraphicsTextureLoader"
+>GraphicsTextureLoader</A
+> -&gt; IO <A HREF="Graphics.html#t%3AGraphicsTextureManager"
+>GraphicsTextureManager</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Amkgc"
+></A
+><B
+>mkgc</B
+> :: <A HREF="Graphics.html#t%3AGraphicsColour"
+>GraphicsColour</A
+> -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgraphicsHits"
+></A
+><B
+>graphicsHits</B
+> :: <A HREF="Graphics.html#t%3AGraphicsTextureManager"
+>GraphicsTextureManager</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>] -&gt; IO [<A HREF="Graphics.html#t%3AGraphicsName"
+>GraphicsName</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgraphicsProcess"
+></A
+><B
+>graphicsProcess</B
+> :: <A HREF="Graphics.html#t%3AGraphicsTextureManager"
+>GraphicsTextureManager</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>] -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgraphicsGetViewport"
+></A
+><B
+>graphicsGetViewport</B
+> :: IO <A HREF="Graphics.html#t%3AGraphicsSize"
+>GraphicsSize</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AgraphicsSetViewport"
+></A
+><B
+>graphicsSetViewport</B
+> :: <A HREF="Graphics.html#t%3AGraphicsPosition"
+>GraphicsPosition</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphicsSize"
+>GraphicsSize</A
+> -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AloadOpenGLTexture"
+></A
+><B
+>loadOpenGLTexture</B
+> :: Int -&gt; Int -&gt; Ptr Word8 -&gt; IO TextureObject</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AlookupTexture"
+></A
+><B
+>lookupTexture</B
+> :: <A HREF="Graphics.html#t%3AGraphicsTextureManager"
+>GraphicsTextureManager</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphicsTextureReference"
+>GraphicsTextureReference</A
+> -&gt; IO TextureObject</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AmaxArcPoints"
+></A
+><B
+>maxArcPoints</B
+> :: <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Acircle"
+></A
+><B
+>circle</B
+> :: <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Asquare"
+></A
+><B
+>square</B
+> :: <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; IO ()</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AcirclePoints"
+></A
+><B
+>circlePoints</B
+> :: <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AarcPoints"
+></A
+><B
+>arcPoints</B
+> :: <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphics2d"
+>Graphics2d</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3Adbl2glf"
+></A
+><B
+>dbl2glf</B
+> :: Double -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.3.0</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

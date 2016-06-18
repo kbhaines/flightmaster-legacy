@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PalmOSInstaller
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="http://installer.palmsource.com/psi.xsd">
+  <Options CreateWebPages="false" CreatePRC="false" CreateEXE="true" CreateOTA="false" />
+  <Product ID="Jeppesen NavData"
+           DisplayVersion="NAVCYCLE"
+           Version="1.0.0.0"
+           DownloadURL="http://www.flight-master.com/invalid.psi"
+		   NoImplicitOutput="true">
+    <Output Filename="navdata.psi" />
+    <Require MinimumOS="5.0" />
+    <Component Platform="PalmOS">
+      <HandheldFile Filename="FlightMaster7-Airspace.pdb" InstallToCard="No" AllowRun="false" />
+      <HandheldFile Filename="CoPilot_Waypoint.pdb" InstallToCard="No" AllowRun="false" />
+    </Component>
+    <Component Platform="Desktop">
+		<DesktopFile OutputDirectory="NAVCYCLE" Filename="FlightMaster7-Airspace.pdb" Action="Install"/>
+		<DesktopFile OutputDirectory="NAVCYCLE" Filename="CoPilot_Waypoint.pdb" Action="Install"/>
+	</Component>
+  </Product>
+</PalmOSInstaller>

@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Runway</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+></TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Runway</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t%3ARunwayIdent"
+></A
+><B
+>RunwayIdent</B
+> = <A HREF="Utils.html#t%3ASString"
+>SString</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t%3ARunway"
+></A
+><B
+>Runway</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ARunway"
+></A
+><B
+>Runway</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ArwIdent"
+></A
+><B
+>rwIdent</B
+> :: <A HREF="Runway.html#t%3ARunwayIdent"
+>RunwayIdent</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ArwCoord"
+></A
+><B
+>rwCoord</B
+> :: <A HREF="Coord.html#t%3ACoord"
+>Coord</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ArwLength"
+></A
+><B
+>rwLength</B
+> :: Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ArwWidth"
+></A
+><B
+>rwWidth</B
+> :: Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v%3ArwElevation"
+></A
+><B
+>rwElevation</B
+> :: Int</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Runway')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Runway" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+>Eq <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Ord <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Read <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Show <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>Binary <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayIdents"
+></A
+><B
+>runwayIdents</B
+> :: [<A HREF="Runway.html#t%3ARunway"
+>Runway</A
+>] -&gt; [<A HREF="Runway.html#t%3ARunwayIdent"
+>RunwayIdent</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayLandable"
+></A
+><B
+>runwayLandable</B
+> :: Int -&gt; <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+> -&gt; Bool</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayFilter"
+></A
+><B
+>runwayFilter</B
+> :: Int -&gt; [<A HREF="Runway.html#t%3ARunway"
+>Runway</A
+>] -&gt; [<A HREF="Runway.html#t%3ARunway"
+>Runway</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayFlipIdent"
+></A
+><B
+>runwayFlipIdent</B
+> :: <A HREF="Runway.html#t%3ARunwayIdent"
+>RunwayIdent</A
+> -&gt; <A HREF="Runway.html#t%3ARunwayIdent"
+>RunwayIdent</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayOtherEnd"
+></A
+><B
+>runwayOtherEnd</B
+> :: [<A HREF="Runway.html#t%3ARunway"
+>Runway</A
+>] -&gt; <A HREF="Runway.html#t%3ARunwayIdent"
+>RunwayIdent</A
+> -&gt; <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3ArunwayActions"
+></A
+><B
+>runwayActions</B
+> :: [<A HREF="Runway.html#t%3ARunway"
+>Runway</A
+>] -&gt; <A HREF="Coord.html#t%3AXFormFunction"
+>XFormFunction</A
+> -&gt; [<A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AdrawOneRunway"
+></A
+><B
+>drawOneRunway</B
+> :: <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+> -&gt; <A HREF="Runway.html#t%3ARunway"
+>Runway</A
+> -&gt; <A HREF="Coord.html#t%3AXFormFunction"
+>XFormFunction</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphicsCmd"
+>GraphicsCmd</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v%3AangleOfLine"
+></A
+><B
+>angleOfLine</B
+> :: <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+> -&gt; <A HREF="Graphics.html#t%3AGraphics1d"
+>Graphics1d</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.3.0</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,17 @@
+Use this screen to start and stop communications to your GPS unit. 
+
+Selecting the start button will open the device's serial port and start the application decoding the incoming GPS messages. When the GPS is started, the application overrides the auto power off feature of your PalmOS device.
+
+If your GPS unit has its own user interface then make sure that it is set to output NMEA via its serial port at 4800 or 57600 baud before selecting the start button. If the GPS unit is 'headless' (e.g. Magellan Companion or others without their own displays) then it should work straight away.
+
+The possible values of Status are:
+Stopped - Not started (!).
+Started - Listening, but no GPS messages.
+Acquiring - GPS Messages, no position fix.
+2/3 d fix - Position fixed in 2 or 3 dimensions.
+
+Select the stop button to close the serial port.
+
+Use the arrow buttons on the Time Zone field to set your local time zone offset from UTC. This is added to UTC to give local time, and is also used in calculating your ETA at a waypoint.
+
+Tip: stop GPS communications when not navigating (e.g. when entering waypoint data) to conserve your device's battery life. This will also help to conserve the battery life of headless units - they power down when the serial port is closed.

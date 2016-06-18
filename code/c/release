@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# release
+#
+# Script that is executed when releasing FlightMaster to public
+#
+
+PRCNAME=$1.prc
+RCPFILE=$2
+VERSION=`sed -n 's/.*FM.*VERSION \"\(.*\)\"/\1/p'  < $RCPFILE`
+
+NEWNAME=`basename $PRCNAME .prc`-$VERSION
+ZIPNAME=$NEWNAME.zip
+
+if [ -e "docs/User Guide.pdf" ];then
+	cp "docs/User Guide.pdf" .
+	MANUAL="User Guide.pdf"
+fi
+
+if [ -e "docs/readme" ];then
+	cp "docs/readme" .
+	README="readme"
+fi
+
+if [ -e "data/world-airspace.pdb" ];then
+
+	cp "data/world-airspace.pdb" .
+	DATA="world-airspace.pdb"
+
+fi
+
+zip -j "${ZIPNAME}" "$PRCNAME" "$MANUAL" "$README" "$DATA"

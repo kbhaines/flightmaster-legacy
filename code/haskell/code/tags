@@ -1,0 +1,1114 @@
+
+Airspace.hs,2653
+module Airspace4,5
+newtype AirspaceDB = AirspaceDB19,20
+newtype AirspaceDB19,20
+    asDB20,21
+type AirspaceIDType23,24
+data Class25,26
+data Class = ClassA25,26
+data Class = ClassA | ClassB25,26
+data Class = ClassA | ClassB | ClassC25,26
+data Class = ClassA | ClassB | ClassC | ClassD25,26
+data Class = ClassA | ClassB | ClassC | ClassD | ClassE25,26
+data Class = ClassA | ClassB | ClassC | ClassD | ClassE | ClassF25,26
+data Class = ClassA | ClassB | ClassC | ClassD | ClassE | ClassF | ClassG25,26
+data Class = ClassA | ClassB | ClassC | ClassD | ClassE | ClassF | ClassG | SUAS25,26
+data Class = ClassA | ClassB | ClassC | ClassD | ClassE | ClassF | ClassG | SUAS | ClassU25,26
+data BoundarySegment28,29
+    Line29,30
+  | LeftArc30,31
+  | RightArc31,32
+  | Circle32,33
+    Line { lineTo29,30
+  | LeftArc { arcStart30,31
+  | LeftArc { arcStart :: !Coord, arcCentre30,31
+  | LeftArc { arcStart :: !Coord, arcCentre :: !Coord, arcRadius30,31
+  | RightArc { arcStart31,32
+  | RightArc { arcStart :: !Coord, arcCentre31,32
+  | RightArc { arcStart :: !Coord, arcCentre :: !Coord, arcRadius31,32
+  | Circle { circleCentre32,33
+  | Circle { circleCentre :: !Coord, circleRadius32,33
+data Airspace36,37
+data Airspace = Airspace36,37
+    lowAlt38,39
+    upperAlt39,40
+    asClass40,41
+    notes41,42
+    bounds44,45
+    boundary48,49
+newtype AirspaceID54,55
+newtype AirspaceID = AirspaceID { airspace54,55
+airspaceOf56,57
+idOf59,60
+type AsFilter65,66
+mkDatabase68,69
+dbWithIdents71,72
+loadDatabase75,76
+loadDatabase fname = decodeFile fname76,77
+toList78,79
+inBoundsAndFilter81,82
+airspaceGraphics91,92
+        areaOfAirspace99,100
+airspaceStyle105,106
+boundaryPoints119,120
+bp2127,128
+startOfSeg143,144
+boundaryBox153,154
+segBounds162,163
+        bs <- get200,201
+        put (0::Word8)207,208
+        put (1::Word8)211,212
+        put (2::Word8)215,216
+        put (3::Word8)219,220
+            tag <- get222,223
+                _ -> error "Bad altitude type in231,232
+    put ClassA = do put (0::Word8)234,235
+    put ClassB = do  put (1::Word8)235,236
+    put ClassC = do  put (2::Word8)236,237
+    put ClassD = do  put (3::Word8)237,238
+    put ClassE = do  put (4::Word8)238,239
+    put ClassF = do  put (5::Word8)239,240
+    put ClassG = do  put (6::Word8)240,241
+    put SUAS   = do  put (7::Word8)241,242
+    put ClassU = do  put (8::Word8)242,243
+        tag <- get245,246
+            _ -> error "Bad airspace class in256,257
+        put (0::Word8)260,261
+        put (1::Word8)264,265
+        put (2::Word8)270,271
+        put (3::Word8)276,277
+        tag <- get281,282
+
+Arinc424.hs,1339
+module Arinc4244,5
+arincConvertWaypoints input output areas = do44,45
+arincConvertWaypoints43,44
+arincConvertAirspace52,53
+type LinkedRunway64,65
+type ArincLine65,66
+data ARINCRecord67,68
+data ARINCRecord = ATNavAidVHF67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid | ATAirfield67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid | ATAirfield | ATCommFreq67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid | ATAirfield | ATCommFreq | ATRunway67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid | ATAirfield | ATCommFreq | ATRunway | ATAirspace67,68
+data ARINCRecord = ATNavAidVHF | ATNavAid | ATAirfield | ATCommFreq | ATRunway | ATAirspace | ATNothing67,68
+runwayPass86,87
+processRunways97,98
+waypointPass116,117
+processWaypoints127,128
+airspacePass147,148
+processAirspace153,154
+a424airspace165,166
+a424airspaceAltitude175,176
+a424airspaceClass192,193
+a424airspaceSegments208,209
+getSuperRecord233,234
+isNewRecord240,241
+filterByArea248,249
+arincRecordType260,261
+a424Coord289,290
+getCoord313,314
+readVHFNavaid320,321
+readRunway347,348
+readAirfield365,366
+getRunways389,390
+        getAllRunways396,397
+getAirfields404,405
+        getAllAirfields411,412
+getNavAids415,416
+groupRecordLines423,424
+        firstRecordFlags426,427
+arincConvertWaypointsOld432,433
+
+Control.hs,117
+module Control0,1
+buttonNew id bounds style label (Just mh) = Window11,12
+buttonNew9,10
+buttonHandleMessage16,17
+
+Coord.hs,940
+module Coord0,1
+type XFormFunction = (Coord10,11
+type XFormFunction10,11
+type ReverseXFormFunction11,12
+rad2deg15,16
+rad2nm18,19
+deg2rad21,22
+nm2rad24,25
+type Radians35,36
+type Range37,38
+type Track38,39
+type Time39,40
+type Latitude40,41
+type Longitude41,42
+type MagneticVariation42,43
+type Speed43,44
+type NauticalMiles44,45
+type Degrees45,46
+type Ident46,47
+data Altitude49,50
+    AMSL50,51
+  | AGL51,52
+  | FL52,53
+  | NOTAM53,54
+    AMSL { altitude50,51
+  | AGL { altitude51,52
+  | FL { fl52,53
+data Coord57,58
+data Coord = Coord57,58
+type BoundCoords60,61
+coordLat62,63
+coordLon65,66
+boundTopLeft71,72
+boundBottomRight74,75
+boundsOverlap77,78
+closeTo82,83
+withinFoot86,87
+coordInBounds89,90
+coordLatDelta::94,95
+coordDistance98,99
+mkCoord106,107
+unCoord131,132
+        latsecs = round $ 360000*(abs.rad2deg.coordLat) c136,137
+        lonsecs = round $ 360000*(abs.rad2deg.coordLon) c137,138
+
+FlightMaster.hs,316
+module Main2,3
+data CommandLineOptions = CommandLineOptions43,44
+data CommandLineOptions43,44
+    waypointsFilename45,46
+  , airspaceFilename46,47
+  , terrainDirectory47,48
+  , gpsPort48,49
+  , startAtIdent49,50
+  , benchMarking50,51
+getCmdOptions56,57
+sendToSubSystem89,90
+exitFM154,155
+saveNav179,180
+
+GPS.hs,876
+module GPS5,6
+data GPSData = GPSData28,29
+  | GPSSky40,41
+data GPSData28,29
+    gpsTime30,31
+ ,  position31,32
+ ,  altitude32,33
+ ,  velocity33,34
+ ,  systemTime35,36
+ ,  history37,38
+data GPSMessage45,46
+data GPSMessage = SetGPS45,46
+data GPSMessage = SetGPS GPSData | GetGPS45,46
+data GPSResponse46,47
+data GPSResponse = BooleanResponse46,47
+data GPSResponse = BooleanResponse Bool | GPSResponse46,47
+type GPSReference48,49
+type GPSMessageProcessor52,53
+track60,61
+speed66,67
+mode73,74
+  --readJSON85,86
+  --showJSON86,87
+          tim (Just utc) = [("time",showJSON (fromRational $ toRational $ diffUTCTime utc unixEpoch118,119
+readTPV125,126
+        resultToMaybe148,149
+readSKY156,157
+gpsMessageProcessor167,168
+gpsClient178,179
+                newGPS = case (decode jsonInput215,216
+gpsMonitor235,236
+gpsInit253,254
+dataStreamAge270,271
+
+GPSReader.hs,445
+module Main0,1
+main = withSocketsDo21,22
+gpsReaderLoop56,57
+        updateGPSData83,84
+        monitor96,97
+gpsJSONOutput110,111
+    --debug $ show $ (JSON.decode.JSON.encode $ clientMsg124,125
+parse138,139
+allowNullDefault150,151
+        (readM (str)155,156
+parseRMC159,160
+parseGGA177,178
+parseGSA188,189
+nmeaCoord198,199
+    (readM lat201,202
+    (readM lon202,203
+        locc213,214
+latHemCheck220,221
+lonHemCheck229,230
+
+GlutManager.hs,811
+module GlutManager2,3
+data DragMessage = SetClicked25,26
+data DragMessage = SetClicked Position Win.ID UTCTime | UpdatePosition25,26
+data DragMessage = SetClicked Position Win.ID UTCTime | UpdatePosition Position | ClearClicked25,26
+data DragMessage25,26
+type DragInfo27,28
+type DragResult31,32
+type DragMP33,34
+dragMessageProcessor37,38
+dragRangeSq50,51
+openGLInit57,58
+        runUserDisplay84,85
+            let projection@(sx',sy',sz') = (fromIntegral sx/2, fromIntegral sy/2,4000)88,89
+graphicsPick94,95
+    let projParams@(sx',sy',sz') = (fromIntegral sx/2, fromIntegral sy/2,4000)97,98
+pickHits102,103
+    let gpos = (fromIntegral x, fromIntegral y)105,106
+keyboardCallback122,123
+mouseMotionCallback187,188
+processPossibleIO211,212
+reshape219,220
+idle231,232
+timerCallback239,240
+
+Graphics.hs,2901
+module Graphics4,5
+type GraphicsFloat = GLfloat17,18
+type GraphicsFloat17,18
+type GraphicsInt18,19
+type GraphicsUInt19,20
+type Graphics1d20,21
+type GraphicsAngle21,22
+type Graphics2d22,23
+type Graphics3d23,24
+type GraphicsStipple24,25
+pointToPlane26,27
+data GraphicsColour29,30
+    GraphicsColour330,31
+  | GraphicsColour431,32
+newtype GraphicsTextureReference34,35
+newtype GraphicsTexture35,36
+type GraphicsTextureLoader36,37
+newtype GraphicsPosition38,39
+newtype GraphicsSize39,40
+newtype GraphicsName41,42
+newtype GraphicsHit43,44
+class GraphicsNameable47,48
+    toGraphicsName51,52
+    fromGraphicsName54,55
+    namedGraphics57,58
+class GraphicsAble65,66
+    toGraphics66,67
+mkGraphicsName69,70
+unGraphicsName73,74
+mkEnumGraphicsName77,78
+unEnumGraphicsName81,82
+unEnumGraphicsHit85,86
+hitToEnum89,90
+namedCmd92,93
+data GraphicsCmd95,96
+    NullOp96,97
+  | InitDrawing98,99
+  | InitPicking99,100
+  | ProjectionParams100,101
+  | Polygon103,104
+  | Polyline109,110
+  | NamedCmd115,116
+  | Circle119,120
+  | Square120,121
+  | RasterText121,122
+  | Translate122,123
+  | RelTranslate123,124
+  | TransRotate124,125
+  | Rotate126,127
+  | Scale127,128
+  | EscapeIO128,129
+  | FinishedDrawing129,130
+      cmdPP101,102
+        cmdPGColour104,105
+      , cmdPGWidth105,106
+      , cmdPGStipple::106,107
+      , cmdPGPoints107,108
+        cmdPLColour110,111
+      , cmdPLWidth111,112
+      , cmdPLStipple::112,113
+      , cmdPLPoints113,114
+      cmdName116,117
+    , cmdNamedCmds::117,118
+data GraphicsPolygonDefinition138,139
+    UntexturedPolygon139,140
+  | TexturedPolygon140,141
+data GraphicsTextureManager146,147
+data GraphicsTextureManager = GraphicsTextureManager146,147
+    textureLoader148,149
+  , textureMap149,150
+newTextureManager153,154
+mkgc158,159
+graphicsHits165,166
+        hitRecord2GraphicsHit177,178
+graphicsProcess180,181
+            --([ ((0,0),(0::GraphicsFloat,0)),214,215
+        clearColor $= Color4 (1.0::GLclampf)221,222
+        clearColor $= Color4 (1.0::GLclampf) 1.0 1.0 (0.0::GLclampf)221,222
+        translate $ Vector3 (0::Graphics1d)256,257
+        Graphics.UI.GLUT.rotate (rot) $ Vector3 (0::Graphics1d)295,296
+        Graphics.UI.GLUT.rotate (rot) $ Vector3 (0::Graphics1d)300,301
+graphicsGetViewport313,314
+graphicsSetViewport318,319
+loadOpenGLTexture333,334
+lookupTexture341,342
+maxArcPoints364,365
+circle367,368
+circle r = renderPrimitive Graphics.Rendering.OpenGL.Polygon (mapM_ (\(x, y)->vertex$Vertex3 x y 0.0) (circlePoints (0,0::Graphics1d)368,369
+square370,371
+        vertex $ Vertex3 (-sz) sz (0.0::Graphics1d)374,375
+        vertex $ Vertex3 sz sz (0.0::Graphics1d)375,376
+        vertex $ Vertex3 sz (-sz) (0.0::Graphics1d)376,377
+        vertex $ Vertex3 (-sz) (-sz) (0.0::Graphics1d)377,378
+circlePoints379,380
+arcPoints387,388
+    arc2395,396
+dbl2glf406,407
+
+Map.hs,756
+module Map6,7
+data MapEnvironment = MapEnvironment37,38
+data MapEnvironment37,38
+    dbMP39,40
+  , editMP40,41
+  , mapMP41,42
+  , navMP42,43
+  , selectionMP43,44
+getMappingParameters54,55
+drawCentre79,80
+mapDraw85,86
+        classFilter122,123
+            --mapRotation133,134
+    drawAircraft144,145
+    drawSelection152,153
+    drawRoute162,163
+legSegmentate173,174
+intermediatePointsGC185,186
+updateSelection201,202
+    handleCheckpointSelection213,214
+    handleLegSelection224,225
+    setupButtons231,232
+validateSelection244,245
+mapHandleEvent263,264
+    setSelection276,277
+    setToFreepoint336,337
+    hitToOBID346,347
+    hitToLeg355,356
+    reverseMap364,365
+dragSet409,410
+mapCoord432,433
+reverseMapCoord438,439
+
+MapNames.hs,167
+module MapNames2,3
+    MapWaypointName9,10
+  | MapAirspaceName10,11
+  | MapCheckpointName11,12
+  | MapRouteName12,13
+  | MapTerrainName13,14
+data MapElement8,9
+
+MapParameters.hs,1044
+module MapParameters2,3
+type MapParametersMP = MessageProcessor27,28
+type MapParametersMP27,28
+data Parameters32,33
+data Parameters = Parameters32,33
+    acPosition34,35
+  , origin35,36
+  , zoom36,37
+  , offsetVector37,38
+  , orientation38,39
+  , filters39,40
+data Message49,50
+    SetACPosition52,53
+  | SetOrigin55,56
+  | SetZoom58,59
+  | SetOrientation61,62
+  | SetFilters64,65
+  | GetOriginCoord67,68
+  | GetACPosition70,71
+  | SetOffsetVector73,74
+  | ApplyOffsetVector77,78
+  | GetParameters80,81
+data ACPosition86,87
+    Off87,88
+  | Unknown88,89
+  | Position89,90
+  | LastPosition90,91
+data Origin96,97
+    ACOrigin101,102
+  | CoordOrigin104,105
+type Zoom110,111
+data Orientation115,116
+    North116,117
+  | ACTrack117,118
+  | UserDegrees118,119
+data Filters124,125
+data Filters = Nowt124,125
+data Response130,131
+    BooleanResponse131,132
+  | Response132,133
+  | OriginResponse133,134
+  | PositionResponse134,135
+type FixAge137,138
+interface142,143
+getACCoord174,175
+computeOrigin180,181
+
+MessageProcessor.hs,484
+module MessageProcessor6,7
+data MyType = GetInt24,25
+data MyType = GetInt | PutInt24,25
+data MyType24,25
+data MyResp25,26
+data MyResp = MyInt25,26
+userFunc27,28
+--sysFunc37,38
+applyUserFunc40,41
+type MessageProcessor62,63
+type MessageHandler67,68
+newMessageProcessor71,72
+messageHandler77,78
+type RunMessage93,94
+type MessageProcessorState96,97
+type UserFuncState98,99
+sendMsg103,104
+newMessageProcessorState110,111
+messageHandlerState115,116
+singleMessage123,124
+
+Navigation.hs,2089
+module Navigation2,3
+type NavigationMP = MP.MessageProcessor9,10
+type NavigationMP9,10
+data Plan13,14
+data Plan = Plan13,14
+data Navigation21,22
+data Navigation = Navigation21,22
+    navPlan23,24
+  , navActive24,25
+  , navHistory25,26
+  , navRedo26,27
+data Checkpoint36,37
+data Checkpoint = Checkpoint36,37
+    checkpointCoord38,39
+  , checkpointMagVar39,40
+  , checkpointElevation40,41
+  , checkpointIdent41,42
+class CheckpointAble51,52
+    toCheckpoint52,53
+magVarOf61,62
+data LegCheckpoint66,67
+data LegCheckpoint = LegCheckpoint66,67
+    legAltitude68,69
+  , legCheckpoint69,70
+data Leg73,74
+data Leg = Leg73,74
+    from75,76
+    to76,77
+    track77,78
+    distance78,79
+    altitude79,80
+type CheckpointNumber86,87
+data Message91,92
+    QueryGetCheckpoint93,94
+  | QueryFindOccurences96,97
+  | QueryFindOccurencesDeleted97,98
+  | QueryBestFitInsert102,103
+  | QueryBestFitInsertPlans103,104
+  | QueryDeletePlans104,105
+  | ReportCheckpoints107,108
+  | ReportIdents110,111
+  | ReportPlan113,114
+  | ReportLength116,117
+  | ListLegs119,120
+  | InsertCheckpoint124,125
+  | DeleteCheckpoint127,128
+  | SetPlan130,131
+  | SetPlanCheckpoints133,134
+  | SetPlanIdents140,141
+  | Clear143,144
+  | Undo146,147
+  | SetActiveCheckpoint149,150
+  | GetActiveCheckpoint152,153
+  | DeactivateCheckpoint155,156
+  | IsActive158,159
+  | SearchHistory162,163
+  | DumpState165,166
+  | RestoreState168,169
+data Response177,178
+    CheckpointResponse178,179
+  | CheckpointListResponse179,180
+  | CheckpointNumberResponse180,181
+  | CheckpointNumberListResponse181,182
+  | IdentListResponse183,184
+  | PlanResponse184,185
+  | PlanListResponse185,186
+  | LegResponse186,187
+  | BoolResponse187,188
+  | DumpResponse188,189
+getCheckpoint196,197
+listCheckpoints208,209
+toLegs215,216
+toLeg225,226
+toLeg cp1 lcp2 = Leg cp1 (cp2) (0.0::Track)226,227
+findOccurences232,233
+bestFitInsert237,238
+insertCheckpoint242,243
+deleteCheckpoint274,275
+numCheckpoints291,292
+insertPermutations299,300
+deletePermutations302,303
+interface308,309
+
+ObjectDB.hs,664
+module ObjectDB2,3
+type ObjectDBMP = MessageProcessor27,28
+type ObjectDBMP27,28
+data ObjectDB32,33
+data ObjectDB = ObjectDB32,33
+    waypointDB34,35
+  , airspaceDB35,36
+data OBID43,44
+    WaypointOBID45,46
+  | AirspaceOBID46,47
+data Object54,55
+    WaypointObject56,57
+  | AirspaceObject57,58
+data Message64,65
+    FindByIdent67,68
+  | FindByCheckpoint70,71
+  | GetObject73,74
+  | ObjectsInBounds76,77
+  | GetDB78,79
+data Response84,85
+    NotFound86,87
+  | ObjectIdResponse87,88
+  | ObjectResponse88,89
+  | ObjectIDListResponse89,90
+  | ObjectListResponse90,91
+  | DB91,92
+interface100,101
+wpidToObject121,122
+airspaceToObject127,128
+
+PlanEditor.hs,540
+module PlanEditor4,5
+type EditMP = MP.MessageProcessor19,20
+type EditMP19,20
+data Message23,24
+    SetEditCheckpoint27,28
+  | SetEditLeg30,31
+  | ClearCheckpoint32,33
+  | NextAddOption36,37
+  | NextDeleteOption40,41
+  | NextToOption43,44
+  | GetRequestCount46,47
+data Response52,53
+    BoolResponse55,56
+  | PlanResponse59,60
+  | SupportedOps63,64
+  | RequestCount66,67
+data Editor73,74
+data Editor = Editor73,74
+    insertPlans76,77
+  , deletePlans79,80
+  , toPlans83,84
+  , count88,89
+interface97,98
+rotate124,125
+
+PlanHarness.hs,94
+module Main0,1
+doLoop nav = do9,10
+doLoop8,9
+    resp <- nav (read cmd14,15
+doLoop218,19
+
+Runway.hs,415
+module Runway0,1
+type RunwayIdent = SString14,15
+type RunwayIdent14,15
+data Runway19,20
+data Runway = Runway19,20
+    rwIdent20,21
+    rwCoord21,22
+    rwLength22,23
+    rwWidth23,24
+    rwElevation24,25
+runwayIdents28,29
+runwayLandable32,33
+runwayFilter36,37
+runwayFlipIdent39,40
+runwayOtherEnd::55,56
+runwayActions66,67
+drawOneRunway75,76
+        z = (50.0::Graphics1d)79,80
+angleOfLine108,109
+
+Scrap.hs,714
+class (Show a, Ord a) => GraphicsTextureReference27,28
+    loadTexture29,30
+type TextureBytes32,33
+newTextureManager37,38
+newtype GraphicsTextureReference40,41
+freeTexture44,45
+newtype TextureFilename51,52
+newtype TexturePNG54,55
+setTexture67,68
+drawPng72,73
+    --yy <- newArray $ concat (replicate 4000 [128::Word8,64,0,0,0,0])83,84
+        --[ ((0::GLfloat,0),0::GLfloat,1),100,101
+        --[ ((0::GLfloat,0),0::GLfloat,1),100,101
+          --((0::GLfloat,100),1,1),101,102
+          --((100::GLfloat,100),1,0),102,103
+          --((100::GLfloat,0),0,0)]103,104
+        [ (xform $ Coord c1lat c1lon,(0.0::GLfloat),0.0),105,106
+          (xform $ Coord c1lat c2lon,(1.0::GLfloat),0.0),106,107
+
+Selection.hs,494
+module Selection2,3
+type SelectionMP = MessageProcessor29,30
+type SelectionMP29,30
+data Message34,35
+    SetByObjectReference38,39
+  | SetByCoord41,42
+  | SetLeg44,45
+  | GetAsCheckpoint47,48
+  | GetOBID50,51
+  | Get53,54
+  | Clear56,57
+data Response63,64
+    BooleanResponse65,66
+  | CheckpointResponse66,67
+  | OBIDResponse67,68
+  | SelectionResponse68,69
+data Selection74,75
+    NoSelection76,77
+  | DatabaseObject79,80
+  | Freepoint82,83
+  | Leg89,90
+interface100,101
+
+SerialController.hs,272
+module SerialController1,2
+type CloseComms = (IO26,27
+type CloseComms26,27
+openPort28,29
+openWinPort50,51
+killExtComms55,56
+bufferSize = 1669,70
+bufferSizeWin = 870,71
+openWindowsPortNative72,73
+readWindowsPort78,79
+readWindowsPort288,89
+portToByteString98,99
+
+Template.hs,43
+module Name2,3
+    Data118,19
+data16,17
+
+Terrain.hs,1133
+module Terrain7,8
+type TerrainData = (Ptr36,37
+type TerrainData36,37
+type TerrainCache37,38
+data TerrainDB39,40
+data TerrainDB = TerrainDB39,40
+    dbFileName41,42
+    cache42,43
+rowSize = 32768::Int46,47
+tileSize=256::Int47,48
+terrainTextureLookup58,59
+openDB69,70
+terrainGraphics74,75
+    --, color $ Color3 (1.0::GLfloat)77,78
+blendPalette92,93
+        blend100,101
+drawTile124,125
+data Palette141,142
+data Palette = Palette141,142
+data Palette = Palette { palRed141,142
+data Palette = Palette { palRed :: Word8, palGrn141,142
+data Palette = Palette { palRed :: Word8, palGrn :: Word8, palBlu141,142
+paletteMapper143,144
+terrainToTextureBytes167,168
+    rgbBytes <- mallocArray (3*(tileSize^2))171,172
+terrainKey189,190
+compressedTileFileName192,193
+makeGLTexture200,201
+readCompressedTile216,217
+        newArray (replicate (tileSize^2) (12::Word8))224,225
+writeCompressedTile228,229
+    bstr <- peekArray (tileSize^2) tdata230,231
+latLonNormalise239,240
+readFromMasterTerrain245,246
+    terrainBytes <- mallocArray (tileSize^2)247,248
+analyseTile268,269
+    (peekArray (tileSize^2) p271,272
+
+TestMonad.hs,174
+module Main0,1
+newtype MyMonad a = MyMonad4,5
+newtype MyMonad4,5
+newtype MyMonad a = MyMonad { runMyMonad4,5
+initVal13,14
+addTo16,17
+addX19,20
+record23,24
+act126,27
+
+TestMonad2.hs,164
+module Main0,1
+type Log = [String]4,5
+type Log4,5
+newtype MyMonad6,7
+newtype MyMonad a = MyMonad { runMyMonad6,7
+record16,17
+act119,20
+act222,23
+act325,26
+
+UI.hs,330
+module UI0,1
+buttonDim = dim15,16
+data ZoomDirection42,43
+data ZoomDirection = In42,43
+data ZoomDirection = In | Out42,43
+zoomHandler44,45
+zoomGubbins51,52
+resetViewHandler68,69
+dragResetGubbins80,81
+addHandler105,106
+deleteHandler116,117
+toHandler127,128
+doEditAction139,140
+undoHandler169,170
+clearHandler184,185
+
+UID.hs,33
+module UID0,1
+topWinID = ID7,8
+
+Utils.hs,557
+module Utils11,12
+metresToFeet n = n*3.280839926,27
+class Digitiser32,33
+    digitise33,34
+type SString45,46
+type LString46,47
+mkSString48,49
+mkLString55,56
+unSString58,59
+unLString61,62
+lzword2Double67,68
+word2Double70,71
+subStr73,74
+subSStr76,77
+mySubStr79,80
+    where start' = fromIntegral start81,82
+          len' = fromIntegral len82,83
+deleteElement84,85
+char88,89
+char n s = s `LC.index` (fromIntegral (n-1)::GHC.Int.Int64)89,90
+getIntFromStr91,92
+splitString98,99
+readM104,105
+debug125,126
+debug1129,130
+maybeRead138,139
+
+Waypoint.hs,1547
+module Waypoint(0,1
+data WaypointDB = WaypointDB54,55
+data WaypointDB54,55
+   wpDB56,57
+type WaypointIDType60,61
+newtype WaypointID63,64
+waypointData80,81
+waypointID84,85
+data Waypoint90,91
+data Waypoint = Waypoint90,91
+  coord92,93
+  identifier93,94
+  name94,95
+  info96,97
+data WaypointType105,106
+    Airfield106,107
+ |  NavAid107,108
+ |  NoType108,109
+    Airfield { runways106,107
+    Airfield { runways :: ![Runway], frequencies106,107
+ |  NavAid { navaidType107,108
+ |  NavAid { navaidType :: !NavType, frequency107,108
+data NavType112,113
+data NavType = VOR112,113
+data NavType = VOR | VORDME112,113
+data NavType = VOR | VORDME | VORTAC112,113
+data NavType = VOR | VORDME | VORTAC | NDB112,113
+data NavType = VOR | VORDME | VORTAC | NDB | DME112,113
+mkDatabase117,118
+loadDatabase121,122
+loadDatabase fname = decodeFile fname122,123
+toList124,125
+addWaypoint127,128
+mkWaypoint131,132
+unWaypoint140,141
+distance::144,145
+inCircle148,149
+inBounds152,153
+--wpAndRanges156,157
+--wpNearestN163,164
+findByID167,168
+findByIdent170,171
+findAllByIdent173,174
+identIsValid176,177
+isAirfield179,180
+wpToPair188,189
+waypointGraphics191,192
+    ((x,y),z) = (xform $ coord wp,(20.0::Graphics1d))217,218
+mkWaypointGLName221,222
+        put (0255,256
+        put (1260,261
+        put (9265,266
+            tag <- get268,269
+    put VOR = put (0280,281
+    put VORDME = put (1281,282
+    put VORTAC = put (2282,283
+    put NDB = put (3283,284
+    put DME = put (4284,285
+        ty <- get287,288
+
+Window.hs,2153
+module Window4,5
+type WindowMP = MP.MessageProcessor66,67
+type WindowMP66,67
+type Title69,70
+type Coordinate72,73
+data Window77,78
+data Window = Window77,78
+    ident89,90
+  , title92,93
+  , style95,96
+  , bounds98,99
+  , children101,102
+  , displayState104,105
+  , handleMessage109,110
+newtype Bounds124,125
+data DisplayState132,133
+data DisplayState = Enabled132,133
+data DisplayState = Enabled | Disabled132,133
+data DisplayState = Enabled | Disabled | Hidden132,133
+data Style139,140
+    CustomStyle142,143
+  | Background145,146
+  | Frame148,149
+  | LockTop154,155
+  | LockBottom155,156
+  | LockLeft156,157
+  | LockRight157,158
+  | FillParent160,161
+newtype ID167,168
+type MessageHandler174,175
+type StateHandle182,183
+data Message187,188
+    FindHits191,192
+  | LeftButtonDown194,195
+  | LeftDrag197,198
+  | LeftDragStop202,203
+  | LeftDragCompleted205,206
+  | LeftButtonUp208,209
+  | WindowSelected211,212
+  | Draw214,215
+  | StateQuery217,218
+  | Key220,221
+  | AppWindowResize223,224
+  | Move226,227
+  | Resize229,230
+  | SetState232,233
+  | SetFocus235,236
+  | GetFocus238,239
+  | SetHandler241,242
+data Response247,248
+    OK249,250
+  | Failed251,252
+  | DrawCmds254,255
+  | Response257,258
+  | NoResponse260,261
+  | IORequest263,264
+  | Hits266,267
+data StateValue271,272
+    StringValue272,273
+  | IntValue273,274
+  | BoolValue274,275
+  | DoubleValue275,276
+interface282,283
+    redrawWindow293,294
+sendMessageToWindow335,336
+applyTo350,351
+findWindow359,360
+findWindowM362,363
+applyWindowM370,371
+winMap379,380
+replaceWindow387,388
+drawWithFurniture::397,398
+    drawStyle401,402
+position412,413
+dimensions417,418
+move423,424
+resize430,431
+moveBounds436,437
+dimensionBounds442,443
+positionBounds448,449
+expandWithChildren455,456
+handleParentResizeMessage462,463
+setAutoPosition473,474
+    foldXY482,483
+    foldWH490,491
+pickWindows500,501
+        scanWindows506,507
+        toWinCoords515,516
+        ptInWindow521,522
+align545,546
+absolute555,556
+    at557,558
+set563,564
+right572,573
+left580,581
+below588,589
+above596,597
+noHandler628,629
+
+arinc-gen.hs,35
+module Main0,1
+wrongArgs = do5,6
+
+oldmap.hs,664
+module Map4,5
+data MapState = MapState27,28
+data MapState27,28
+    mapDragged32,33
+  , mapScale34,35
+  , mapTrackUp35,36
+  , mapUserHeading36,37
+  , mapAirspaceClasses37,38
+  , mapSelection38,39
+  --, mapPickFunction39,40
+  , mapWaypointDB41,42
+  , mapAirspaceDB42,43
+  , mapPositionFunc43,44
+  , mapFlightPlan44,45
+getMappingParameters59,60
+drawCentre84,85
+mapDraw93,94
+mapDraw'100,101
+    mapRotation124,125
+    classFilter131,132
+    drawAircraft136,137
+    drawSelection144,145
+    planActions154,155
+mapHandleEvent161,162
+        modifyMapParams278,279
+mapKeyboard304,305
+mapSelector332,333
+mapCoord347,348
+reverseMapCoord353,354
+
+oldwindow.hs,2081
+module Window4,5
+type Title = String77,78
+type Title77,78
+type Coordinate80,81
+data Window85,86
+data Window = Window85,86
+    ident97,98
+  , title100,101
+  , style103,104
+  , bounds106,107
+  , children109,110
+  , displayState112,113
+  , handleMessage117,118
+newtype Bounds132,133
+data WindowState140,141
+data WindowState = Enabled140,141
+data WindowState = Enabled | Disabled140,141
+data WindowState = Enabled | Disabled | Hidden140,141
+data Style147,148
+    CustomStyle150,151
+  | Background153,154
+  | Frame156,157
+  | LockTop162,163
+  | LockBottom163,164
+  | LockLeft164,165
+  | LockRight165,166
+  | FillParent168,169
+data MessageAddress173,174
+data MessageAddress = All173,174
+data MessageAddress = All | First173,174
+data MessageAddress = All | First | One173,174
+newtype ID179,180
+type MessageHandler186,187
+type QueryFunction192,193
+type StateHandle200,201
+data Message207,208
+data Message = Message207,208
+data MessageBody212,213
+    LeftButtonDown215,216
+  | LeftDrag218,219
+  | Draw222,223
+  | StateQuery225,226
+  | StateUpdateNotify229,230
+  | Key232,233
+  | AppWindowResize235,236
+  | ParentResize239,240
+  | MoveWindow242,243
+  | ResizeWindow245,246
+data Response253,254
+    Update259,260
+  | UpdatePrivate262,263
+  | DrawCmds265,266
+  | Response268,269
+  | NoResponse271,272
+data SyncMessage278,279
+    Clicked280,281
+  | SyncVar283,284
+framedStyle290,291
+position295,296
+dimensions300,301
+expandWithChildren306,307
+--winMap314,315
+newWindow321,322
+drawWithFurniture::340,341
+    drawStyle344,345
+move355,356
+resize362,363
+handleParentResizeMessage368,369
+queryFunction378,379
+readPublicVariable389,390
+updatePublicVariable395,396
+sendMessageTo404,405
+sendMessage424,425
+    testFunc465,466
+winMapM480,481
+applyMessage494,495
+setAutoPosition518,519
+    foldXY527,528
+    foldWH535,536
+pickWindows545,546
+        scanWindows551,552
+        toWinCoords560,561
+        ptInWindow566,567
+draw581,582
+        redrawWindow584,585
+displayToggleHidden598,599
+displayToggleDisabled606,607
+
+st.hs,8
+bar2,3

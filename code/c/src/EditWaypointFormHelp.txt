@@ -1,0 +1,5 @@
+Your waypoint can be assigned a 10 character identifier. Latitude and longitude are in degrees and minutes only. E.g. to enter 3 mins 30 seconds you must enter 3.5 in the minutes field.
+
+Magnetic Variation is in degrees, enter a positive value for west variation or a negative value for east variation.
+
+Select Delete to delete the waypoint data and return to the waypoint list (you can't delete the last remaining waypoint).

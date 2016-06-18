@@ -1,0 +1,65 @@
+#!/usr/bin/perl -w
+
+#
+# This script runs a pose session
+#
+#
+
+use lib "../test";
+
+use HostControl;
+use EmUtils;
+use EmRPC;
+
+
+#
+# emulator connection details
+#
+$host = "localhost";
+$port = 6415;
+
+$emulator = "pose -load_apps FlightMaster.prc -run_app 'FM 5.0b1c'";
+
+# launch the emulator in another process...
+
+if ($pid = fork) {
+
+	# 
+	# parent process, do nothing: will carry on below...
+	# 
+	
+} else {
+	# child, launch the emulator
+	exec "$emulator";
+}
+
+# parent gets to here...
+
+# pause to let the emulator launch, and then save the psf file
+
+
+sleep 2;
+
+while (!EmRPC::OpenConnection($port, $host)) {
+
+	sleep 2;
+
+}
+
+while (!CurrentWindowTitle("Flight Selector")) {
+	sleep 1;
+}
+
+TapButton("OK");
+
+print "Ready. Enter 'k' to kill pose.\n";
+
+$x=<STDIN>;
+
+if ($x eq "k\n") {
+
+	HostSessionQuit();
+
+}
+
+EmRPC::CloseConnection();

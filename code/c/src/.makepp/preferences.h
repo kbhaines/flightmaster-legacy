@@ -1,0 +1,4 @@
+INCLUDES=Constants.h GlobalTypes.h Platform.h
+SYSTEM_INCLUDES=
+SIGNATURE=1196433707
+END=

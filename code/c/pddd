@@ -1,0 +1,3 @@
+#!/bin/sh
+#
+ddd --cd=src --debugger m68k-palmos-gdb ../FlightMaster

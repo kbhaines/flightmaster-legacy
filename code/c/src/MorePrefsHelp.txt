@@ -1,0 +1,3 @@
+Airfield minimums should be set to the landing needs of your aircraft. Airfields that meet these minimums will be displayed on the proximity waypoints page. These settings are also used for emergency diversions.
+
+Zone Radius specfies how big the traffic zone around an airfield is (in the US, this is usually 5nm, in the UK it is 2 or 2.5nm).

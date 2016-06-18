@@ -1,0 +1,5 @@
+INCLUDES=AsDatabase.h Constants.h TerrainType.h WDManager.h
+SYSTEM_INCLUDES=
+C_MD5_SUM=d428068a9cdd24bdb51664bfae7523c9
+SIGNATURE=1220198349
+END=

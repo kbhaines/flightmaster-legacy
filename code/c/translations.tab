@@ -1,0 +1,343 @@
+OK	OK
+Cancel	Cancel
+Exit	Exit
+MSG	MSG
+ETE	ETE
+ETA	ETA
+LOC	LOC
+UTC	UTC
+ETV	ETV
+ETT	ETT
+GPS Fix Lost	GPS Fix Lost
+GPS Fix 2D	GPS Fix 2D
+GPS Fix 3D	GPS Fix 3D
+Turn < 2 minutes	Turn < 2 minutes
+Off	Off
+VNAV < 2 minutes	VNAV < 2 minutes
+VNAV	VNAV
+Set OBS	Set OBS
+Resume	Resume
+Set Target Altitude	Set Target Altitude
+AMSL	AMSL
+Above	Above
+Set Rate	Set Rate
+ft/min	ft/min
+ft/Nm	ft/Nm
+Degrees	Degrees
+m/min	m/min
+m/Km	m/Km
+Set distance before	Set distance before
+Waypoint	Waypoint
+Set Barometric Altitude	Set Barometric Altitude
+Reset	Reset
+Near Obstacle(s)	Near Obstacle(s)
+Map	Map
+Csr	Csr
+Wpt	Wpt
+Load Alternate	Load Alternate
+Load alternative flight plan into standby plan (B)?	Load alternative flight plan into standby plan (B)?
+Load Original Plan	Load Original Plan
+Delete Flight?	Delete Flight?
+Do you really want to delete this flight?	Do you really want to delete this flight?
+Valid until: ^1	Valid until: ^1
+Set Terrain Reference	Set Terrain Reference
+GPS	GPS
+Restore flight plan from %s? (All edits will be lost)	Restore flight plan from %s? (All edits will be lost)
+Stop	Stop
+Flight	Flight
+Run	Run
+Once	Once
+Recycle	Recycle
+Count-up	Count-up
+%s timer expired	%s timer expired
+Timer	Timer
+2-D ONLY	2-D ONLY
+Altitude	Altitude
+APPEND %s	APPEND %s
+BY NOTAM	BY NOTAM
+BC	BC
+CANCEL OBS FIRST	CANCEL OBS FIRST
+ Checking Obstacle DB %d...	 Checking Obstacle DB %d...
+Choose GPS	Choose GPS
+Creating database structure	Creating database structure
+degrees	degrees
+DELETE %s	DELETE %s
+Error detected - purging database	Error detected - purging database
+File not found	File not found
+GOTO	GOTO
+GOTO %s	GOTO %s
+H	H
+Heading	Heading
+HOLD	HOLD
+Hz	Hz
+<map	<map
+<pan	<pan
+LOADED	LOADED
+ Loading CoPilot System Database	 Loading CoPilot System Database
+ Loading CoPilot User Database	 Loading CoPilot User Database
+Map %d	Map %d
+MRK	MRK
+MSG	MSG
+No Fix	No Fix
+No Memory	No Memory
+NO POSITION FIX	NO POSITION FIX
+OFF	OFF
+PAN	PAN
+Please Wait	Please Wait
+Purging database	Purging database
+SFC	SFC
+Searching...	Searching...
+Segment: %d/%d	Segment: %d/%d
+Set Timer (hhmm or mm)	Set Timer (hhmm or mm)
+Sim	Sim
+Speed	Speed
+START AT %s	START AT %s
+T-ref: %s%s	T-ref: %s%s
+UNLTD	UNLTD
+V	V
+VP	VP
+WA	WA
+WARN: GPS NOT DETECTED	WARN: GPS NOT DETECTED
+WARN: NO POSITION	WARN: NO POSITION
+System Incompatible	System Incompatible
+System Version 5.0 or greater and a colour screen	System Version 5.0 or greater and a colour screen
+is required to run this application.	is required to run this application.
+OK	OK
+Cancel	Cancel
+Main	Main
+Preferences...	Preferences...
+Simulator...	Simulator...
+Clear Track	Clear Track
+About...	About...
+Page	Page
+GPS...	GPS...
+Search...	Search...
+Map...	Map...
+Map	Map
+Flight Plan...	Flight Plan...
+Timers...	Timers...
+Day/Night	Day/Night
+Monitoring...	Monitoring...
+Action	Action
+New waypoint...	New waypoint...
+Load Flight...	Load Flight...
+Save Flight...	Save Flight...
+Information...	Information...
+OBS...	OBS...
+Next leg	Next leg
+Previous leg	Previous leg
+Direct-to	Direct-to
+Resume	Resume
+VNAV...	VNAV...
+Emergency	Emergency
+HSI...	HSI...
+Previous Segment	Previous Segment
+Next Segment	Next Segment
+Undo	Undo
+Configure Map...	Configure Map...
+Edit	Edit
+Map	Map
+Import base...	Import base...
+Import TFR...	Import TFR...
+About FlightMaster 7.5	About FlightMaster 7.5
+(c) 2006	(c) 2006
+\n\nSupport available from \nwww.flight-master.com\n	\n\nSupport available from \nwww.flight-master.com\n
+ ON 	 ON 
+OFF	OFF
+SIM	SIM
+Time Zone:	Time Zone:
+UTC:	UTC:
+Local:	Local:
+Flight Plan	Flight Plan
+Leg	Leg
+Tot	Tot
+Alt	Alt
+Trk	Trk
+Dist	Dist
+Time	Time
+Switch to Alternate	Switch to Alternate
+Plan...	Plan...
+CoPilot...	CoPilot...
+Edit Waypoint	Edit Waypoint
+Identifier:	Identifier:
+Latitude:	Latitude:
+Longitude:	Longitude:
+Mag.Var'n:	Mag.Var'n:
+Notes:	Notes:
+Delete...	Delete...
+Timers	Timers
+Wpt	Wpt
+Sel	Sel
+Terrain Ref.:	Terrain Ref.:
+Track Line	Track Line
+Zone Circles	Zone Circles
+Track Up	Track Up
+Heading Arc	Heading Arc
+Route	Route
+Track log	Track log
+Search	Search
+Find:	Find:
+ID	ID
+A/F	A/F
+VOR	VOR
+NDB	NDB
+INT	INT
+ANY	ANY
+Flight Selector	Flight Selector
+Blank	Blank
+Preferences	Preferences
+Units:	Units:
+Nm	Nm
+Mi	Mi
+Km	Km
+CoPilot	CoPilot
+Headings:	Headings:
+True	True
+Magnetic	Magnetic
+GPS:	GPS:
+Cradle	Cradle
+Serial	Serial
+Bluetooth	Le Bluetooth
+Card	Card
+iQue	iQue
+Clie CF	Clie CF
+USB	USB
+GPS jitter correction	GPS jitter correction
+Auto-start GPS	Auto-start GPS
+Registration Code:	Registration Code:
+More	More
+More Preferences	More Preferences
+Landing Minimums	Landing Minimums
+Surface:	Surface:
+Hard	Hard
+Soft	Soft
+Either	Either
+Length:	Length:
+Width:	Width:
+Zone Radius:	Zone Radius:
+Emergency Diversion	Emergency Diversion
+Hold button to activate	Hold button to activate
+INPUT	INPUT
+Del	Del
+System Message	System Message
+DEL	DEL
+Clear	Clear
+SRCH	SRCH
+MAP	MAP
+HSI	HSI
+PLN	PLN
+TMR	TMR
+Monitor	Monitor
+Info	Info
+OBS	OBS
+VNAV	VNAV
+Config	Config
+Previous	Previous
+Next	Next
+Mark	Mark
+ABORT	ABORT
+All	All
+Freq.	Freq.
+Runways	Runways
+ILS	ILS
+Notes	Notes
+Analysing Waypoints	Analysing Waypoints
+Waypoint: 	Waypoint: 
+Simulation Parameters	Simulation Parameters
+Heading:	Heading:
+Altitude:	Le Altitude:
+Speed:	Speed:
+Importing Database	Importing Database
+Vertical Navigation	Vertical Navigation
+Target Alt:	Target Alt:
+Rate:	Rate:
+rate	rate
+By:	By:
+Alt. Correct:	Alt. Correct:
+Monitor Settings	Monitor Settings
+Turn Anticipation	Turn Anticipation
+Obstacle Warnings	Obstacle Warnings
+Track Log:	Track Log:
+Voice:	Voice:
+Off	Off
+MathLib Required	MathLib Required
+This application requires MathLib to function. Mathlib can be obtained 	This application requires MathLib to function. Mathlib can be obtained 
+from http://www.radiks.net/~rhuebner/mathlib.html.	from http://www.radiks.net/~rhuebner/mathlib.html.
+Abort	Abort
+Invalid Registration Code	Invalid Registration Code
+The registration code you have entered is invalid. 	The registration code you have entered is invalid. 
+If you believe that the code is valid please contact 	If you believe that the code is valid please contact 
+your vendor for help.	your vendor for help.
+Back...	Le Back...
+Registration Succeeded!	Registration Succeeded!
+Thanks for your support!\n	Thanks for your support!\n
+Registration Required	Registration Required
+You use this application at your own risk.	You use this application at your own risk.
+ This page disappears when you register, but the risk is 	 This page disappears when you register, but the risk is 
+still entirely your own.	still entirely your own.
+I Agree	I Agree
+CoPilot Required	CoPilot Required
+Cannot locate CoPilot (v5.0 or later), or its database 	Cannot locate CoPilot (v5.0 or later), or its database 
+files. CoPilot is mandatory for FlightMaster v4.7 or later	files. CoPilot is mandatory for FlightMaster v4.7 or later
+Quit	Quit
+Warning	Warning
+Check GPS	Check GPS
+Cannot access the GPS. Please 	Cannot access the GPS. Please 
+verify that your GPS is plugged in.	verify that your GPS is plugged in.
+ If using Bluetooth, check that the device is switched on	 If using Bluetooth, check that the device is switched on
+ and is transmitting.\n\n	 and is transmitting.\n\n
+Error code: ^1	Error code: ^1
+Database Scan Results	Database Scan Results
+Runway Dimension Error	Runway Dimension Error
+Runway Length and Width must be numeric values. 	Runway Length and Width must be numeric values. 
+If you wish to specify metres, add a single 'm' 	If you wish to specify metres, add a single 'm' 
+immediately after the number (e.g. 42m).	immediately after the number (e.g. 42m).
+The GPS is still running, are you sure 	The GPS is still running, are you sure 
+you want to exit?	you want to exit?
+Yes	Yes
+No	No
+Bluetooth Not Supported	Bluetooth Not Supported
+This device does not have Bluetooth support.	This device does not have Bluetooth support.
+Expansion Not Supported	Expansion Not Supported
+This device does not have Expansion Card support.	This device does not have Expansion Card support.
+Garmin iQue Not Supported	Garmin iQue Not Supported
+This device does not have the Garmin iQue GPS library.	This device does not have the Garmin iQue GPS library.
+Long Task Ahead!	Long Task Ahead!
+The system needs to analyse the 	The system needs to analyse the 
+system waypoints. This could take a long 	system waypoints. This could take a long 
+time (x8 if your database is on a card) and it 	time (x8 if your database is on a card) and it 
+cannot be stopped.	cannot be stopped.
+ATZ Radius Error	ATZ Radius Error
+ATZ Radius must be from 1 to 6nm (1.1 to 6.9 miles or	ATZ Radius must be from 1 to 6nm (1.1 to 6.9 miles or
+1.85 to 11.1 km). 	1.85 to 11.1 km). 
+Emergency Diversion Failed	Emergency Diversion Failed
+Can't locate a suitable airfield!	Can't locate a suitable airfield!
+Error in Flight Plan	Error in Flight Plan
+The selected flight plan cannot be loaded. It might refer to waypoints	The selected flight plan cannot be loaded. It might refer to waypoints
+ missing from the database, or not contain waypoints at all. Please	 missing from the database, or not contain waypoints at all. Please
+ check the plan.	 check the plan.
+Problems with database	Problems with database
+Can't analyse the database. There might not be enough memory, but a more likely cause is that	Can't analyse the database. There might not be enough memory, but a more likely cause is that
+ the system database is on an external card - this would take too long to analyse.	 the system database is on an external card - this would take too long to analyse.
+Input Error	Input Error
+^1 must be 0 to ^2 ^3	^1 must be 0 to ^2 ^3
+Too Many Waypoints	Too Many Waypoints
+The number of waypoints in a database	The number of waypoints in a database
+ is limited to 32767 (this is a PalmOS limitation).	 is limited to 32767 (this is a PalmOS limitation).
+Failed to Import Database	Failed to Import Database
+Confirm Import	Confirm Import
+Are you sure you want to import	Are you sure you want to import
+ the ^1 database?	 the ^1 database?
+Demo Version	Demo Version
+Valid until: XXXMMM	Valid until: XXXMMM
+Demo Expired	Demo Expired
+This demo version has expired.	This demo version has expired.
+Save Flight	Save Flight
+Name:	Name:
+Flight Exists	Flight Exists
+A flight with that name already exists, do you want 	A flight with that name already exists, do you want 
+to overwrite it?	to overwrite it?
+Notes (Tap to close)	Notes (Tap to close)
+Blank	Blank
+New	New
+Goto	Goto

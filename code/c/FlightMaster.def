@@ -1,0 +1,10 @@
+application { "FlightMaster-BHMN" "BHMN" backup stack=0x4000 }
+multiple code { "section2" }
+multiple code { "section3" }
+multiple code { "section4" }
+multiple code { "section5" }
+multiple code { "section6" }
+multiple code { "section7" }
+multiple code { "section8" }
+multiple code { "section9" }
+multiple code { "sectio10" }
