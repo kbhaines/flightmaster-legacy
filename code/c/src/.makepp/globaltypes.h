@@ -1,5 +1,0 @@
-INCLUDES=AsDatabase.h Gps.h Platform.h TerrainType.h WDManager.h
-SYSTEM_INCLUDES=
-C_MD5_SUM=d5b98ee640602e3120ae995c7c8fc02a
-SIGNATURE=1220198350
-END=

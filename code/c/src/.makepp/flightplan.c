@@ -1,5 +1,0 @@
-INCLUDES=AvCalcs.h FlightPlan.h GlobalTypes.h Modules.h Platform.h
-SYSTEM_INCLUDES=
-C_MD5_SUM=9f3b6bce463487102fe0866b7f5bf589
-SIGNATURE=1227971411
-END=
